@@ -12,12 +12,22 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            theme: { extend: {
-                colors: {
-                    tech: { primary: '#0E74FF', dark: '#0F172A', light: '#E2E8F0', gray: '#94A3B8' }
-                },
-                fontFamily: { inter: ['Inter', 'sans-serif'] }
-            }}
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        tech: {
+                            primary: '#0E74FF',
+                            darkBg: '#111827',
+                            darkCard: '#1F2937',
+                            darkText: '#F3F4F6'
+                        }
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif']
+                    }
+                }
+            }
         }
     </script>
     <style type="text/tailwindcss">
@@ -47,22 +57,22 @@
                 border-color: rgba(14,116,255,0.2);
             }
             .dark .card-category, .dark .card-tool {
-                background: #1E293B;
-                border-color: rgba(148,163,184,0.15);
+                background: #1F2937;
+                border-color: rgba(75,85,99,0.3);
+                box-shadow: 0 2px 12px rgba(0,0,0,0.2);
             }
-            .text-gradient {
-                background: linear-gradient(135deg, #0E74FF, #06B6D4);
-                -webkit-background-clip: text;
-                color: transparent;
+            .dark .card-category:hover, .dark .card-tool:hover {
+                border-color: rgba(14,116,255,0.3);
+                box-shadow: 0 6px 20px rgba(0,0,0,0.3);
             }
         }
     </style>
 </head>
-<body class="bg-gray-50 dark:bg-[#0F172A] transition-colors duration-300">
+<body class="bg-gray-50 dark:bg-tech-darkBg text-gray-800 dark:text-tech-darkText transition-colors duration-300">
 <div id="progress-bar"></div>
 
-<!-- 精修导航栏 -->
-<header class="sticky top-0 z-50 bg-white/90 dark:bg-[#0F172A]/90 backdrop-blur-md border-b border-gray-100 dark:border-slate-700/20">
+<!-- 导航栏 -->
+<header class="sticky top-0 z-50 bg-white/90 dark:bg-tech-darkBg/90 backdrop-blur-md border-b border-gray-100 dark:border-gray-800">
     <div class="container mx-auto px-4 py-3 flex justify-between items-center">
         <a href="/" class="text-xl font-semibold text-tech-primary">AI工具大全</a>
         <nav class="hidden md:flex items-center gap-6 text-sm text-gray-600 dark:text-gray-300">
@@ -83,7 +93,7 @@
 <!-- 移动端菜单 -->
 <div class="mobile-menu">
     <div class="flex justify-between items-center mb-6">
-        <span class="font-medium text-tech-dark dark:text-white">菜单</span>
+        <span class="font-medium text-gray-800 dark:text-white">菜单</span>
         <button onclick="closeMenu()" class="text-xl hover:scale-110 transition-transform">✕</button>
     </div>
     <div class="flex flex-col gap-3 text-sm text-gray-600 dark:text-gray-300">
@@ -99,13 +109,13 @@
 
 <main class="container mx-auto px-4 py-12 max-w-4xl">
 
-    <!-- 精修Banner -->
+    <!-- Banner -->
     <section class="text-center mb-16">
         <h1 class="text-3xl md:text-4xl font-light text-gray-800 dark:text-white mb-3 tracking-tight">发现高效AI工具，提升创造力</h1>
         <p class="text-gray-500 dark:text-gray-400 max-w-xl mx-auto text-sm md:text-base">极简收录、清晰分类、真实体验、零基础上手</p>
     </section>
 
-    <!-- 精修8大分类卡片 -->
+    <!-- 8大分类卡片 -->
     <section class="mb-16">
         <h2 class="text-lg font-medium text-gray-700 dark:text-gray-200 mb-8 text-center">全部分类</h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
@@ -144,12 +154,12 @@
         </div>
     </section>
 
-    <!-- 精修热门工具卡片 -->
+    <!-- 热门工具卡片 -->
     <section class="mb-16">
         <h2 class="text-lg font-medium text-gray-700 dark:text-gray-200 mb-8 text-center">热门工具</h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             <a href="/platforms/doubao.html" class="card-tool p-5 text-center">
-                <div class="w-12 h-12 mx-auto rounded-full bg-tech-primary/10 flex items-center justify-center mb-3">
+                <div class="w-12 h-12 mx-auto rounded-full bg-tech-primary/10 dark:bg-tech-primary/20 flex items-center justify-center mb-3">
                     <span class="text-tech-primary font-medium">豆包</span>
                 </div>
                 <p class="text-xs font-medium text-gray-700 dark:text-gray-300">豆包AI</p>
@@ -175,12 +185,12 @@
         </div>
     </section>
 
-    <!-- 精修精选教程 -->
+    <!-- 精选教程 -->
     <section class="mb-16">
         <h2 class="text-lg font-medium text-gray-700 dark:text-gray-200 mb-8 text-center">精选教程</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
             <a href="/platforms/doubao.html" class="card-tool p-5 flex items-center gap-4">
-                <div class="w-10 h-10 rounded-full bg-tech-primary/10 flex items-center justify-center text-tech-primary text-sm font-medium">1</div>
+                <div class="w-10 h-10 rounded-full bg-tech-primary/10 dark:bg-tech-primary/20 flex items-center justify-center text-tech-primary text-sm font-medium">1</div>
                 <div>
                     <p class="text-sm font-medium text-gray-800 dark:text-white">豆包AI新手入门</p>
                     <p class="text-xs text-gray-400 mt-1">3分钟快速上手</p>
@@ -196,7 +206,7 @@
         </div>
     </section>
 
-    <!-- 极简底部标语 -->
+    <!-- 底部标语 -->
     <section class="text-center text-gray-400 dark:text-gray-500 text-xs tracking-wider">
         简约 · 高效 · 实用 · 持续更新
     </section>
@@ -206,7 +216,7 @@
     © 2026 AI工具大全
 </footer>
 
-<div id="backTop" onclick="backToTop()" class="fixed bottom-6 right-6 w-10 h-10 rounded-full bg-white dark:bg-[#1E293B] shadow-lg flex items-center justify-center text-gray-600 dark:text-gray-300 opacity-0 invisible transition-all hover:scale-110">↑</div>
+<div id="backTop" onclick="backToTop()" class="fixed bottom-6 right-6 w-10 h-10 rounded-full bg-white dark:bg-tech-darkCard shadow-lg flex items-center justify-center text-gray-600 dark:text-gray-300 opacity-0 invisible transition-all hover:scale-110">↑</div>
 
 </body>
 </html>
