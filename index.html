@@ -8,55 +8,103 @@
     <meta name="description" content="专为AI新手打造，涵盖豆包、Kimi、ChatGPT等平台使用攻略，AI工具合集、提示词技巧、副业思路，让新手快速上手AI。">
 </head>
 <body class="bg-gray-50 text-gray-800">
-<header class="bg-white shadow-sm sticky top-0 z-50">
-    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-        <a href="/" class="text-2xl font-bold text-blue-600">AI入门指南</a>
-        <nav class="hidden md:flex space-x-6">
-            <a href="/beginner.html" class="hover:text-blue-600">新手入门</a>
-            <a href="/platform.html" class="hover:text-blue-600">平台攻略</a>
-            <a href="/tools.html" class="hover:text-blue-600">AI工具</a>
-            <a href="/prompt.html" class="hover:text-blue-600">提示词</a>
-            <a href="/sidejob.html" class="hover:text-blue-600">副业思路</a>
-        </nav>
-    </div>
-</header>
+    <!-- 导航栏（已修复跳转链接） -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold text-blue-600">AI入门指南</a>
+            <nav class="hidden md:flex space-x-6">
+                <a href="/beginner.html" class="hover:text-blue-600">新手入门</a>
+                <a href="/platform.html" class="hover:text-blue-600">平台攻略</a>
+                <a href="/tools.html" class="hover:text-blue-600">AI工具</a>
+                <a href="/prompt.html" class="hover:text-blue-600">提示词</a>
+                <a href="/sidejob.html" class="hover:text-blue-600">副业思路</a>
+            </nav>
+            <button class="md:hidden text-gray-600" onclick="toggleMenu()">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- 移动端菜单 -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white shadow absolute w-full left-0 p-4">
+            <a href="/beginner.html" class="block py-2 hover:text-blue-600">新手入门</a>
+            <a href="/platform.html" class="block py-2 hover:text-blue-600">平台攻略</a>
+            <a href="/tools.html" class="block py-2 hover:text-blue-600">AI工具</a>
+            <a href="/prompt.html" class="block py-2 hover:text-blue-600">提示词</a>
+            <a href="/sidejob.html" class="block py-2 hover:text-blue-600">副业思路</a>
+        </div>
+    </header>
 
-<section class="bg-blue-50 py-16">
-    <div class="container mx-auto px-4 text-center">
-        <h1 class="text-4xl md:text-5xl font-bold mb-4">从零开始，轻松玩转AI</h1>
-        <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">不用懂技术，不用花高价，新手也能快速掌握AI平台使用、工具技巧，解锁AI高效办公与副业新可能</p>
-        <a href="/beginner.html" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">立即入门 →</a>
-    </div>
-</section>
+    <!-- 首页Banner -->
+    <section class="bg-blue-50 py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">从零开始，轻松玩转AI</h1>
+            <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">不用懂技术，不用花高价，新手也能快速掌握AI平台使用、工具技巧，解锁AI高效办公与副业新可能</p>
+            <a href="/beginner.html" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">立即入门 →</a>
+        </div>
+    </section>
 
-<section class="py-12">
-    <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-12">核心内容</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
-                <h3 class="text-xl font-semibold mb-2">新手入门</h3>
-                <p class="text-gray-600">AI基础概念、免费vs付费AI区别、国内可用平台对比，零基础也能快速上手。</p>
-            </div>
-            <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
-                <h3 class="text-xl font-semibold mb-2">平台攻略</h3>
-                <p class="text-gray-600">豆包、Kimi、通义千问、ChatGPT 详细使用教程，注册、充值、避坑全指南。</p>
-            </div>
-            <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
-                <h3 class="text-xl font-semibold mb-2">AI工具合集</h3>
-                <p class="text-gray-600">文案、翻译、作图、视频、办公AI工具汇总，直接可用，提升效率10倍。</p>
-            </div>
-            <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
-                <h3 class="text-xl font-semibold mb-2">副业思路</h3>
-                <p class="text-gray-600">AI文案、AI设计、AI剪辑等副业案例，零门槛起步，轻松实现副业增收。</p>
+    <!-- 核心板块 -->
+    <section class="py-12">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">核心内容</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- 新手入门 -->
+                <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
+                    <svg class="w-12 h-12 text-blue-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                    <h3 class="text-xl font-semibold mb-2">新手入门</h3>
+                    <p class="text-gray-600">AI基础概念、免费vs付费AI区别、国内可用平台对比，零基础也能快速上手。</p>
+                    <a href="/beginner.html" class="text-blue-600 mt-4 inline-block">查看更多 →</a>
+                </div>
+
+                <!-- 平台攻略 -->
+                <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
+                    <svg class="w-12 h-12 text-blue-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                    <h3 class="text-xl font-semibold mb-2">平台攻略</h3>
+                    <p class="text-gray-600">豆包、Kimi、通义千问、ChatGPT 详细使用教程，注册、充值、避坑全指南。</p>
+                    <a href="/platform.html" class="text-blue-600 mt-4 inline-block">查看更多 →</a>
+                </div>
+
+                <!-- AI工具合集 -->
+                <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
+                    <svg class="w-12 h-12 text-blue-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                    </svg>
+                    <h3 class="text-xl font-semibold mb-2">AI工具合集</h3>
+                    <p class="text-gray-600">文案、翻译、作图、视频、办公AI工具汇总，直接可用，提升效率10倍。</p>
+                    <a href="/tools.html" class="text-blue-600 mt-4 inline-block">查看更多 →</a>
+                </div>
+
+                <!-- 副业思路 -->
+                <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
+                    <svg class="w-12 h-12 text-blue-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                    <h3 class="text-xl font-semibold mb-2">副业思路</h3>
+                    <p class="text-gray-600">AI文案、AI设计、AI剪辑等副业案例，零门槛起步，轻松实现副业增收。</p>
+                    <a href="/sidejob.html" class="text-blue-600 mt-4 inline-block">查看更多 →</a>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<footer class="bg-gray-800 text-white py-8 mt-10">
-    <div class="container mx-auto px-4 text-center text-gray-400">
-        © 2026 AI入门指南 版权所有
-    </div>
-</footer>
+    <!-- 底部 -->
+    <footer class="bg-gray-800 text-white py-8 mt-10">
+        <div class="container mx-auto px-4 text-center text-gray-400">
+            © 2026 AI入门指南 版权所有
+        </div>
+    </footer>
+
+    <!-- 移动端菜单JS -->
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+    </script>
 </body>
 </html>
