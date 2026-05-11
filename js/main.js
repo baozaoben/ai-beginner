@@ -11,7 +11,7 @@ if(localStorage.getItem('theme') === 'dark'){
 // 手风琴折叠
 function toggleCollapse(id){
   const content = document.getElementById(id);
-  const icon = document.getElementById(id+'-icon');
+  const icon = document.getElementById(id + '-icon');
   const allContent = document.querySelectorAll('.collapse-content');
   const allIcon = document.querySelectorAll('.collapse-icon');
   
@@ -20,7 +20,7 @@ function toggleCollapse(id){
     if(item.id !== id) item.classList.add('hidden');
   });
   allIcon.forEach(item=>{
-    if(item.id !== id+'-icon') item.textContent = '+';
+    if(item.id !== id + '-icon') item.textContent = '+';
   });
 
   // 切换当前
