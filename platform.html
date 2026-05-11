@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
-    <script src="/js/main.js" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -62,16 +61,13 @@
 <body class="bg-gray-50 dark:bg-tech-darkBg text-gray-800 dark:text-tech-darkText transition-colors duration-300">
 <div id="progress-bar"></div>
 
-<!-- 导航栏 -->
+<!-- 导航栏 已精简：只保留 首页 / AI平台 / 关于 -->
 <header class="sticky top-0 z-50 bg-white/90 dark:bg-tech-darkBg/90 backdrop-blur-md border-b border-gray-100 dark:border-gray-800">
     <div class="container mx-auto px-4 py-3 flex justify-between items-center">
         <a href="/" class="text-xl font-semibold text-tech-primary">AI工具大全</a>
         <nav class="hidden md:flex items-center gap-6 text-sm text-gray-600 dark:text-gray-300">
             <a href="/" class="hover:text-tech-primary transition-colors">首页</a>
             <a href="/ai-platforms.html" class="text-tech-primary font-medium border-b-2 border-tech-primary pb-1">AI平台</a>
-            <a href="/tutorials.html" class="hover:text-tech-primary transition-colors">教程</a>
-            <a href="/sidejob.html" class="hover:text-tech-primary transition-colors">副业</a>
-            <a href="/cases.html" class="hover:text-tech-primary transition-colors">成功案例</a>
             <a href="/contact.html" class="hover:text-tech-primary transition-colors">关于</a>
         </nav>
         <div class="flex items-center gap-3">
@@ -81,7 +77,7 @@
     </div>
 </header>
 
-<!-- 移动端菜单 -->
+<!-- 移动端菜单 同步精简 -->
 <div class="mobile-menu">
     <div class="flex justify-between items-center mb-6">
         <span class="font-medium text-gray-800 dark:text-white">菜单</span>
@@ -90,9 +86,6 @@
     <div class="flex flex-col gap-3 text-sm text-gray-600 dark:text-gray-300">
         <a href="/" class="hover:text-tech-primary transition-colors">首页</a>
         <a href="/ai-platforms.html" class="text-tech-primary font-medium">AI平台</a>
-        <a href="/tutorials.html" class="hover:text-tech-primary transition-colors">教程</a>
-        <a href="/sidejob.html" class="hover:text-tech-primary transition-colors">副业</a>
-        <a href="/cases.html" class="hover:text-tech-primary transition-colors">成功案例</a>
         <a href="/contact.html" class="hover:text-tech-primary transition-colors">关于</a>
     </div>
 </div>
@@ -111,7 +104,7 @@
             <span class="text-tech-primary mr-2">💬</span>通用对话大模型
         </h2>
         <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-            <a href="/platforms/doubao.html" class="card-platform p-4">
+            <a href="/tools/doubao.html" class="card-platform p-4">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-full bg-tech-primary/10 dark:bg-tech-primary/20 flex items-center justify-center text-tech-primary font-medium">豆包</div>
                     <div class="flex-1">
@@ -383,7 +376,7 @@
             </div>
             <div class="card-platform p-4">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center text-orange-500 font-medium">火山</div>
+                    <div class="w-10 h-10 h-10 rounded-full bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center text-orange-500 font-medium">火山</div>
                     <div class="flex-1">
                         <p class="text-sm font-medium">火山写作</p>
                         <p class="text-xs text-gray-400">小说故事创作</p>
@@ -616,6 +609,40 @@
 </footer>
 
 <div id="backTop" onclick="backToTop()" class="fixed bottom-6 right-6 w-10 h-10 rounded-full bg-white dark:bg-tech-darkCard shadow-lg flex items-center justify-center text-gray-600 dark:text-gray-300 opacity-0 invisible transition-all hover:scale-110">↑</div>
+
+<script>
+    // 明暗模式切换
+    function toggleDark() {
+        document.documentElement.classList.toggle('dark');
+        localStorage.setItem('dark', document.documentElement.classList.contains('dark'));
+    }
+    if (localStorage.getItem('dark') === 'true') document.documentElement.classList.add('dark');
+
+    // 移动端菜单
+    function openMenu() {
+        document.querySelector('.mobile-menu').classList.remove('translate-x-full');
+        document.querySelector('.menu-mask').classList.remove('hidden');
+    }
+    function closeMenu() {
+        document.querySelector('.mobile-menu').classList.add('translate-x-full');
+        document.querySelector('.menu-mask').classList.add('hidden');
+    }
+
+    // 返回顶部
+    function backToTop(){
+        window.scrollTo({top:0,behavior:'smooth'});
+    }
+    window.addEventListener('scroll',function(){
+        const btn = document.getElementById('backTop');
+        if(window.scrollY > 300){
+            btn.classList.remove('opacity-0','invisible');
+            btn.classList.add('opacity-100','visible');
+        }else{
+            btn.classList.add('opacity-0','invisible');
+            btn.classList.remove('opacity-100','visible');
+        }
+    });
+</script>
 
 </body>
 </html>
