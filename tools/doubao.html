@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>豆包AI - 全能对话大模型｜教程与案例</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        tech: {
+                            primary: '#0E74FF',
+                            darkBg: '#111827',
+                            darkCard: '#1F2937',
+                            darkText: '#F3F4F6'
+                        }
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .card-content {
+                background: white;
+                border-radius: 18px;
+                box-shadow: 0 2px 14px rgba(14,116,255,0.07);
+                border: 1px solid rgba(148,163,184,0.12);
+            }
+            .dark .card-content {
+                background: #1F2937;
+                border-color: rgba(75,85,99,0.3);
+            }
+            .step {
+                counter-increment: step;
+            }
+            .step::before {
+                content: counter(step);
+                @apply w-6 h-6 rounded-full bg-tech-primary text-white text-xs flex items-center justify-center absolute -left-3 top-0;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-tech-darkBg text-gray-800 dark:text-tech-darkText transition-colors duration-300 font-inter">
+
+<!-- 导航栏 -->
+<header class="sticky top-0 z-50 bg-white/90 dark:bg-tech-darkBg/90 backdrop-blur-md border-b border-gray-100 dark:border-gray-800">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+        <a href="/" class="text-xl font-semibold text-tech-primary">AI工具大全</a>
+        <nav class="hidden md:flex items-center gap-6 text-sm text-gray-600 dark:text-gray-300">
+            <a href="/" class="hover:text-tech-primary transition-colors">首页</a>
+            <a href="/ai-platforms.html" class="text-tech-primary font-medium border-b-2 border-tech-primary pb-1">AI平台</a>
+            <a href="/cases.html" class="hover:text-tech-primary transition-colors">成功案例</a>
+            <a href="/contact.html" class="hover:text-tech-primary transition-colors">关于</a>
+        </nav>
+        <div class="flex items-center gap-3">
+            <button onclick="toggleDark()" class="text-lg hover:scale-110 transition-transform">🌓</button>
+            <button class="md:hidden text-lg" onclick="openMenu()">☰</button>
+        </div>
+    </div>
+</header>
+
+<!-- 移动端菜单 -->
+<div class="mobile-menu fixed inset-0 z-50 bg-white dark:bg-tech-darkBg p-6 transform translate-x-full transition-transform duration-300">
+    <div class="flex justify-between items-center mb-6">
+        <span class="font-medium text-gray-800 dark:text-white">菜单</span>
+        <button onclick="closeMenu()" class="text-xl">✕</button>
+    </div>
+    <div class="flex flex-col gap-4 text-sm">
+        <a href="/" class="py-2 border-b border-gray-100 dark:border-gray-800">首页</a>
+        <a href="/ai-platforms.html" class="py-2 border-b border-gray-100 dark:border-gray-800 text-tech-primary">AI平台</a>
+        <a href="/cases.html" class="py-2 border-b border-gray-100 dark:border-gray-800">成功案例</a>
+        <a href="/contact.html" class="py-2">关于</a>
+    </div>
+</div>
+<div class="menu-mask fixed inset-0 bg-black/50 z-40 hidden" onclick="closeMenu()"></div>
+
+<main class="container mx-auto px-4 py-8 max-w-3xl">
+    <!-- 工具头部 -->
+    <section class="flex items-center gap-4 mb-8">
+        <div class="w-14 h-14 rounded-full bg-tech-primary/10 dark:bg-tech-primary/20 flex items-center justify-center text-tech-primary text-xl font-semibold">豆包</div>
+        <div>
+            <h1 class="text-2xl font-semibold">豆包AI</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400">字节跳动出品 · 全能对话大模型 · 新人首选</p>
+        </div>
+        <a href="https://www.doubao.com" target="_blank" class="ml-auto px-4 py-2 bg-tech-primary text-white text-sm rounded-lg hover:bg-tech-primary/90 transition-colors">
+            立即使用 →
+        </a>
+    </section>
+
+    <!-- 标签切换 -->
+    <section class="flex border-b border-gray-200 dark:border-gray-700 mb-6">
+        <button class="tab-btn active px-5 py-2 text-sm font-medium border-b-2 border-tech-primary text-tech-primary" onclick="switchTab('intro')">工具介绍</button>
+        <button class="tab-btn px-5 py-2 text-sm font-medium border-b-2 border-transparent text-gray-500" onclick="switchTab('tutorial')">新手教程</button>
+        <button class="tab-btn px-5 py-2 text-sm font-medium border-b-2 border-transparent text-gray-500" onclick="switchTab('cases')">成功案例</button>
+        <button class="tab-btn px-5 py-2 text-sm font-medium border-b-2 border-transparent text-gray-500" onclick="switchTab('faq')">常见问题</button>
+    </section>
+
+    <!-- 工具介绍 -->
+    <div id="intro" class="tab-content">
+        <section class="card-content p-6 mb-6">
+            <h2 class="text-lg font-medium mb-4">✨ 工具亮点</h2>
+            <ul class="space-y-3 text-sm text-gray-600 dark:text-gray-300">
+                <li class="flex items-start gap-2">
+                    <span class="text-tech-primary mt-1">•</span>
+                    <span><strong>免费好用</strong>：基础功能永久免费，新人零成本上手</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <span class="text-tech-primary mt-1">•</span>
+                    <span><strong>全能能力</strong>：聊天问答、文案写作、绘画、PPT、编程全支持</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <span class="text-tech-primary mt-1">•</span>
+                    <span><strong>中文最优</strong>：理解中文语境强，回答接地气，适合国内用户</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <span class="text-tech-primary mt-1">•</span>
+                    <span><strong>多端同步</strong>：网页版、APP、小程序、电脑客户端全平台可用</span>
+                </li>
+            </ul>
+        </section>
+
+        <section class="card-content p-6">
+            <h2 class="text-lg font-medium mb-4">📌 适合人群</h2>
+            <div class="grid grid-cols-2 gap-3 text-sm">
+                <div class="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">✅ 新手小白（零基础入门）</div>
+                <div class="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">✅ 职场办公（写报告、做PPT）</div>
+                <div class="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">✅ 自媒体（写文案、想选题）</div>
+                <div class="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">✅ 学生党（写作业、查资料）</div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 新手教程 -->
+    <div id="tutorial" class="tab-content hidden">
+        <section class="card-content p-6 mb-6">
+            <h2 class="text-lg font-medium mb-4">🚀 5分钟快速上手</h2>
+            <div class="space-y-6 pl-8 relative">
+                <!-- 步骤1 -->
+                <div class="step relative">
+                    <h3 class="font-medium text-sm mb-1">打开豆包官网</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">浏览器输入 <code class="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">doubao.com</code> 或打开APP</p>
+                    <div class="h-32 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 text-xs">
+                        [截图：豆包首页]
+                    </div>
+                </div>
+                <!-- 步骤2 -->
+                <div class="step relative">
+                    <h3 class="font-medium text-sm mb-1">注册/登录账号</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">用手机号一键登录，无需复杂注册</p>
+                    <div class="h-32 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 text-xs">
+                        [截图：登录界面]
+                    </div>
+                </div>
+                <!-- 步骤3 -->
+                <div class="step relative">
+                    <h3 class="font-medium text-sm mb-1">输入指令开始对话</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">底部输入框输入问题，比如：<code class="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">帮我写一篇小红书美食文案</code></p>
+                    <div class="h-32 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 text-xs">
+                        [截图：对话界面]
+                    </div>
+                </div>
+                <!-- 步骤4 -->
+                <div class="step relative">
+                    <h3 class="font-medium text-sm mb-1">使用高级功能</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">顶部可切换「AI绘画」「PPT生成」「文档总结」等功能</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card-content p-6">
+            <h2 class="text-lg font-medium mb-4">💡 新手常用提示词模板</h2>
+            <div class="space-y-3 text-sm">
+                <div class="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                    <p class="font-medium mb-1">📝 文案写作</p>
+                    <code class="text-xs text-gray-500 dark:text-gray-400">帮我写一篇关于[产品]的小红书文案，风格活泼，适合年轻人，300字左右</code>
+                </div>
+                <div class="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                    <p class="font-medium mb-1">📊 PPT大纲</p>
+                    <code class="text-xs text-gray-500 dark:text-gray-400">帮我生成一份[主题]的PPT大纲，包含封面、目录、5个核心内容、结尾</code>
+                </div>
+                <div class="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                    <p class="font-medium mb-1">🎨 AI绘画</p>
+                    <code class="text-xs text-gray-500 dark:text-gray-400">生成一张国风美女插画，水墨风格，高清，8K，唯美意境</code>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 成功案例 -->
+    <div id="cases" class="tab-content hidden">
+        <section class="card-content p-6 mb-6">
+            <h2 class="text-lg font-medium mb-4">🏆 新人真实案例</h2>
+            <div class="space-y-6">
+                <!-- 案例1 -->
+                <div class="border-b border-gray-100 dark:border-gray-800 pb-4">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="tag bg-green-100 dark:bg-green-900/30 text-green-600 text-xs px-2 py-0.5 rounded">自媒体</span>
+                        <span class="text-xs text-gray-400">0基础 · 3天涨粉500+</span>
+                    </div>
+                    <h3 class="font-medium text-sm mb-1">用豆包批量生成小红书爆款文案</h3>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mb-2">每天花10分钟，生成5篇文案，3天涨粉500+，单篇点赞1.2万</p>
+                    <div class="h-32 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 text-xs">
+                        [截图：文案效果]
+                    </div>
+                </div>
+                <!-- 案例2 -->
+                <div class="border-b border-gray-100 dark:border-gray-800 pb-4">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="tag bg-blue-100 dark:bg-blue-900/30 text-blue-600 text-xs px-2 py-0.5 rounded">职场</span>
+                        <span class="text-xs text-gray-400">上班族 · 1小时完成周报</span>
+                    </div>
+                    <h3 class="font-medium text-sm mb-1">用豆包自动生成周报/月报</h3>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mb-2">原本需要2小时的周报，现在1分钟生成，格式规范，内容完整</p>
+                </div>
+                <!-- 案例3 -->
+                <div>
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="tag bg-pink-100 dark:bg-pink-900/30 text-pink-600 text-xs px-2 py-0.5 rounded">AI绘画</span>
+                        <span class="text-xs text-gray-400">新手 · 零绘画基础</span>
+                    </div>
+                    <h3 class="font-medium text-sm mb-1">用豆包AI绘画生成电商产品图</h3>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mb-2">不会PS也能做高清产品图，免费出图，可直接用于店铺上架</p>
+                    <div class="h-32 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 text-xs">
+                        [截图：绘画效果]
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 常见问题 -->
+    <div id="faq" class="tab-content hidden">
+        <section class="card-content p-6">
+            <h2 class="text-lg font-medium mb-4">❓ 常见问题</h2>
+            <div class="space-y-4 text-sm">
+                <div class="border-b border-gray-100 dark:border-gray-800 pb-3">
+                    <h3 class="font-medium mb-1">豆包AI是免费的吗？</h3>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">基础聊天、文案写作、简单绘画永久免费；高级功能（如长文档总结、高清绘画）需开通会员（30元/月）</p>
+                </div>
+                <div class="border-b border-gray-100 dark:border-gray-800 pb-3">
+                    <h3 class="font-medium mb-1">豆包会泄露我的聊天内容吗？</h3>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">不会。豆包严格遵守隐私政策，聊天内容仅用于模型优化（可关闭），不会泄露给第三方</p>
+                </div>
+                <div class="border-b border-gray-100 dark:border-gray-800 pb-3">
+                    <h3 class="font-medium mb-1">豆包能写论文吗？</h3>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">可以辅助写大纲、查资料、润色内容，但不能直接生成完整论文（避免学术不端）</p>
+                </div>
+                <div>
+                    <h3 class="font-medium mb-1">豆包和其他AI有什么区别？</h3>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">豆包中文理解更强、免费额度大、多端同步、操作简单，更适合国内普通用户；其他AI（如GPT）英文更强、专业能力更全面</p>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<footer class="py-6 text-center text-xs text-gray-400 dark:text-gray-500">
+    © 2026 AI工具大全 · 专注新人AI教程与案例
+</footer>
+
+<script>
+    // 明暗模式切换
+    function toggleDark() {
+        document.documentElement.classList.toggle('dark');
+        localStorage.setItem('dark', document.documentElement.classList.contains('dark'));
+    }
+    if (localStorage.getItem('dark') === 'true') document.documentElement.classList.add('dark');
+
+    // 移动端菜单
+    function openMenu() {
+        document.querySelector('.mobile-menu').classList.remove('translate-x-full');
+        document.querySelector('.menu-mask').classList.remove('hidden');
+    }
+    function closeMenu() {
+        document.querySelector('.mobile-menu').classList.add('translate-x-full');
+        document.querySelector('.menu-mask').classList.add('hidden');
+    }
+
+    // 标签切换
+    function switchTab(tabName) {
+        // 隐藏所有内容
+        document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+        // 移除所有激活状态
+        document.querySelectorAll('.tab-btn').forEach(el => {
+            el.classList.remove('active', 'border-tech-primary', 'text-tech-primary');
+            el.classList.add('border-transparent', 'text-gray-500');
+        });
+        // 显示选中内容
+        document.getElementById(tabName).classList.remove('hidden');
+        // 激活选中按钮
+        event.target.classList.add('active', 'border-tech-primary', 'text-tech-primary');
+        event.target.classList.remove('border-transparent', 'text-gray-500');
+    }
+</script>
+
+</body>
+</html>
