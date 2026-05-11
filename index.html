@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI入门指南 | 零基础学AI·平台攻略·工具合集</title>
+    <title>AI工具大全 | 平台测评+使用教程+副业指南</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <meta name="description" content="专为AI新手打造，涵盖豆包、Kimi、ChatGPT等平台使用攻略，AI工具合集、提示词技巧、副业思路，让新手快速上手AI。">
+    <meta name="description" content="全网流行AI平台/软件整合，含AI对话、绘画、剪辑、文案工具，详细测评+新手教程，附带AI副业思路，新手也能轻松上手。">
 </head>
 <body class="bg-gray-50 text-gray-800">
-    <!-- 导航栏 -->
+    <!-- 导航栏（新增联系我们，用于接单） -->
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="/" class="text-2xl font-bold text-blue-600">AI入门指南</a>
+            <a href="/" class="text-2xl font-bold text-blue-600">AI工具大全</a>
             <nav class="hidden md:flex space-x-6">
-                <a href="/beginner.html" class="hover:text-blue-600">新手入门</a>
-                <a href="/platform.html" class="hover:text-blue-600">平台攻略</a>
-                <a href="/tools.html" class="hover:text-blue-600">AI工具</a>
-                <a href="/prompt.html" class="hover:text-blue-600">提示词</a>
+                <a href="/" class="text-blue-600 font-semibold">首页</a>
+                <a href="/ai-platforms.html" class="hover:text-blue-600">AI平台大全</a>
+                <a href="/tutorials.html" class="hover:text-blue-600">使用教程</a>
                 <a href="/sidejob.html" class="hover:text-blue-600">副业思路</a>
+                <a href="/welfare.html" class="hover:text-blue-600">干货福利</a>
+                <a href="/contact.html" class="hover:text-blue-600">联系我们</a>
             </nav>
             <button class="md:hidden text-gray-600" onclick="toggleMenu()">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -27,60 +28,189 @@
         </div>
         <!-- 移动端菜单 -->
         <div id="mobileMenu" class="hidden md:hidden bg-white shadow absolute w-full left-0 p-4">
-            <a href="/beginner.html" class="block py-2 hover:text-blue-600">新手入门</a>
-            <a href="/platform.html" class="block py-2 hover:text-blue-600">平台攻略</a>
-            <a href="/tools.html" class="block py-2 hover:text-blue-600">AI工具</a>
-            <a href="/prompt.html" class="block py-2 hover:text-blue-600">提示词</a>
+            <a href="/" class="block py-2 text-blue-600 font-semibold">首页</a>
+            <a href="/ai-platforms.html" class="block py-2 hover:text-blue-600">AI平台大全</a>
+            <a href="/tutorials.html" class="block py-2 hover:text-blue-600">使用教程</a>
             <a href="/sidejob.html" class="block py-2 hover:text-blue-600">副业思路</a>
+            <a href="/welfare.html" class="block py-2 hover:text-blue-600">干货福利</a>
+            <a href="/contact.html" class="block py-2 hover:text-blue-600">联系我们</a>
         </div>
     </header>
 
-    <!-- 首页Banner -->
+    <!-- 首页Banner（简洁，不添加广告） -->
     <section class="bg-blue-50 py-16">
         <div class="container mx-auto px-4 text-center">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">从零开始，轻松玩转AI</h1>
-            <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">不用懂技术，不用花高价，新手也能快速掌握AI使用技巧，解锁办公、学习、副业新方式</p>
-            <a href="/beginner.html" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">立即入门 →</a>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">全网AI工具整合指南</h1>
+            <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">AI对话、绘画、剪辑、文案工具全收录，详细测评+新手教程，轻松找工具、学用法、做副业</p>
+            <a href="/ai-platforms.html" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">查看全部AI工具 →</a>
         </div>
     </section>
 
-    <!-- 最新文章列表 -->
+    <!-- AI工具分类（核心区域，用户快速找工具，无广告） -->
     <section class="py-12">
-        <div class="container mx-auto px-4 max-w-4xl">
-            <h2 class="text-3xl font-bold mb-8">最新文章</h2>
-            <div class="space-y-4">
-                <a href="/articles/chatgpt-register.html" class="block bg-white p-5 rounded shadow hover:shadow-md transition">
-                    <h3 class="text-xl font-semibold">ChatGPT国内注册使用完整教程</h3>
-                    <p class="text-gray-500 text-sm mt-2">零基础一步步教你注册、登录、使用</p>
+        <div class="container mx-auto px-4 max-w-5xl">
+            <!-- 分类1：AI对话大模型 -->
+            <h2 class="text-2xl font-bold mb-6">AI对话大模型（聊天/文案/推理）</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+                <!-- 豆包AI（可点击，跳转到详情页） -->
+                <a href="/platforms/doubao.html" class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-center flex flex-col items-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-3">
+                        <span class="text-blue-600 font-bold text-xl">豆包</span>
+                    </div>
+                    <h3 class="font-semibold">豆包AI</h3>
+                    <p class="text-xs text-gray-500 mt-1">字节跳动出品，免费好用</p>
                 </a>
-                <a href="/articles/doubao-prompt.html" class="block bg-white p-5 rounded shadow hover:shadow-md transition">
-                    <h3 class="text-xl font-semibold">豆包提示词万能模板，新手直接复制用</h3>
-                    <p class="text-gray-500 text-sm mt-2">通用提示词公式，各场景直接套用</p>
+                <!-- KimiAI（占位，后续添加详情页） -->
+                <a href="/platforms/kimi.html" class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-center flex flex-col items-center">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-3">
+                        <span class="text-purple-600 font-bold text-xl">Kimi</span>
+                    </div>
+                    <h3 class="font-semibold">Kimi AI</h3>
+                    <p class="text-xs text-gray-500 mt-1">长文本处理强</p>
                 </a>
-                <a href="/articles/ai-draw-tips.html" class="block bg-white p-5 rounded shadow hover:shadow-md transition">
-                    <h3 class="text-xl font-semibold">AI绘画新手3个技巧，轻松出高清美图</h3>
-                    <p class="text-gray-500 text-sm mt-2">提示词写法+负面词+参数设置</p>
+                <!-- 通义千问（占位） -->
+                <a href="/platforms/tongyi.html" class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-center flex flex-col items-center">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-3">
+                        <span class="text-orange-600 font-bold text-xl">千问</span>
+                    </div>
+                    <h3 class="font-semibold">通义千问</h3>
+                    <p class="text-xs text-gray-500 mt-1">阿里出品，功能全面</p>
                 </a>
-                <a href="/articles/free-ai-tools.html" class="block bg-white p-5 rounded shadow hover:shadow-md transition">
-                    <h3 class="text-xl font-semibold">国内5个免费AI工具，新手必收藏</h3>
-                    <p class="text-gray-500 text-sm mt-2">文案、绘画、语音转文字全覆盖</p>
+                <!-- ChatGPT（占位） -->
+                <a href="/platforms/chatgpt.html" class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-center flex flex-col items-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-3">
+                        <span class="text-green-600 font-bold text-xl">GPT</span>
+                    </div>
+                    <h3 class="font-semibold">ChatGPT</h3>
+                    <p class="text-xs text-gray-500 mt-1">AI鼻祖，推理强</p>
                 </a>
-                <a href="/articles/doubao-vs-kimi.html" class="block bg-white p-5 rounded shadow hover:shadow-md transition">
-                    <h3 class="text-xl font-semibold">豆包、Kimi、通义千问对比怎么选</h3>
-                    <p class="text-gray-500 text-sm mt-2">新手一看就懂的选择指南</p>
+            </div>
+
+            <!-- 分类2：AI绘画工具 -->
+            <h2 class="text-2xl font-bold mb-6">AI绘画工具（头像/海报/设计）</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+                <!-- 文心一格（占位） -->
+                <a href="/platforms/wenxin.html" class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-center flex flex-col items-center">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-3">
+                        <span class="text-red-600 font-bold text-xl">文心</span>
+                    </div>
+                    <h3 class="font-semibold">文心一格</h3>
+                    <p class="text-xs text-gray-500 mt-1">百度出品，中文友好</p>
                 </a>
-                <a href="/articles/ai-sidejob.html" class="block bg-white p-5 rounded shadow hover:shadow-md transition">
-                    <h3 class="text-xl font-semibold">3个零门槛AI副业，新手也能做</h3>
-                    <p class="text-gray-500 text-sm mt-2">不用技术，在家就能做</p>
+                <!-- Midjourney（占位） -->
+                <a href="/platforms/midjourney.html" class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-center flex flex-col items-center">
+                    <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-3">
+                        <span class="text-indigo-600 font-bold text-xl">MJ</span>
+                    </div>
+                    <h3 class="font-semibold">Midjourney</h3>
+                    <p class="text-xs text-gray-500 mt-1">画质顶尖，需付费</p>
+                </a>
+                <!-- 占位（后续添加其他绘画工具） -->
+                <a href="#" class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-center flex flex-col items-center opacity-50">
+                    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-3">
+                        <span class="text-gray-600 font-bold text-xl">工具3</span>
+                    </div>
+                    <h3 class="font-semibold">待更新</h3>
+                    <p class="text-xs text-gray-500 mt-1">敬请期待</p>
+                </a>
+                <a href="#" class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-center flex flex-col items-center opacity-50">
+                    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-3">
+                        <span class="text-gray-600 font-bold text-xl">工具4</span>
+                    </div>
+                    <h3 class="font-semibold">待更新</h3>
+                    <p class="text-xs text-gray-500 mt-1">敬请期待</p>
+                </a>
+            </div>
+
+            <!-- 分类3：AI视频/剪辑工具 -->
+            <h2 class="text-2xl font-bold mb-6">AI视频/剪辑工具（剪辑/配音/字幕）</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+                <!-- 剪映AI（占位） -->
+                <a href="/platforms/jianying.html" class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-center flex flex-col items-center">
+                    <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mb-3">
+                        <span class="text-pink-600 font-bold text-xl">剪映</span>
+                    </div>
+                    <h3 class="font-semibold">剪映AI</h3>
+                    <p class="text-xs text-gray-500 mt-1">免费，新手友好</p>
+                </a>
+                <!-- 占位（后续添加其他剪辑工具） -->
+                <a href="#" class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-center flex flex-col items-center opacity-50">
+                    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-3">
+                        <span class="text-gray-600 font-bold text-xl">工具2</span>
+                    </div>
+                    <h3 class="font-semibold">待更新</h3>
+                    <p class="text-xs text-gray-500 mt-1">敬请期待</p>
+                </a>
+                <a href="#" class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-center flex flex-col items-center opacity-50">
+                    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-3">
+                        <span class="text-gray-600 font-bold text-xl">工具3</span>
+                    </div>
+                    <h3 class="font-semibold">待更新</h3>
+                    <p class="text-xs text-gray-500 mt-1">敬请期待</p>
+                </a>
+                <a href="#" class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-center flex flex-col items-center opacity-50">
+                    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-3">
+                        <span class="text-gray-600 font-bold text-xl">工具4</span>
+                    </div>
+                    <h3 class="font-semibold">待更新</h3>
+                    <p class="text-xs text-gray-500 mt-1">敬请期待</p>
+                </a>
+            </div>
+
+            <!-- 分类4：其他AI工具（文案/智能体等） -->
+            <h2 class="text-2xl font-bold mb-6">其他AI工具（文案/智能体/建站）</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <a href="#" class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-center flex flex-col items-center opacity-50">
+                    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-3">
+                        <span class="text-gray-600 font-bold text-xl">文案</span>
+                    </div>
+                    <h3 class="font-semibold">待更新</h3>
+                    <p class="text-xs text-gray-500 mt-1">文案生成工具</p>
+                </a>
+                <a href="#" class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-center flex flex-col items-center opacity-50">
+                    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-3">
+                        <span class="text-gray-600 font-bold text-xl">智能体</span>
+                    </div>
+                    <h3 class="font-semibold">待更新</h3>
+                    <p class="text-xs text-gray-500 mt-1">智能体搭建工具</p>
+                </a>
+                <a href="#" class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-center flex flex-col items-center opacity-50">
+                    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-3">
+                        <span class="text-gray-600 font-bold text-xl">建站</span>
+                    </div>
+                    <h3 class="font-semibold">待更新</h3>
+                    <p class="text-xs text-gray-500 mt-1">AI建站工具</p>
+                </a>
+                <a href="#" class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-center flex flex-col items-center opacity-50">
+                    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-3">
+                        <span class="text-gray-600 font-bold text-xl">更多</span>
+                    </div>
+                    <h3 class="font-semibold">待更新</h3>
+                    <p class="text-xs text-gray-500 mt-1">持续收录中</p>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- 底部 -->
+    <!-- 副业思路入口（保留，简洁展示） -->
+    <section class="bg-gray-100 py-10">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-2xl font-bold mb-4">AI副业思路</h2>
+            <p class="text-gray-600 mb-6">零门槛、无成本，利用AI工具轻松变现</p>
+            <a href="/sidejob.html" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">查看副业教程 →</a>
+        </div>
+    </section>
+
+    <!-- 底部（预留广告位，不影响体验） -->
     <footer class="bg-gray-800 text-white py-8 mt-10">
-        <div class="container mx-auto px-4 text-center text-gray-400">
-            © 2026 AI入门指南 版权所有
+        <div class="container mx-auto px-4">
+            <!-- 底部广告位（简洁，不突兀） -->
+            <div class="mb-6 text-center text-gray-400 text-sm">
+                广告合作/工具收录：联系我们（导航栏“联系我们”）
+            </div>
+            <div class="text-center text-gray-400">
+                © 2026 AI工具大全 版权所有 | 专注AI工具测评与教程，助力新手快速上手
+            </div>
         </div>
     </footer>
 
