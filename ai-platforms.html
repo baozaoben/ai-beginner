@@ -3,164 +3,331 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI平台大全 | 所有AI工具分类汇总</title>
+    <title>AI平台大全 - 全分类主流AI工具收录</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/main.js" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        tech: {
+                            primary: '#0E74FF',
+                            darkBg: '#111827',
+                            darkCard: '#1F2937',
+                            darkText: '#F3F4F6'
+                        }
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .card-platform {
+                background: white;
+                border-radius: 16px;
+                box-shadow: 0 2px 12px rgba(14,116,255,0.06);
+                border: 1px solid rgba(148,163,184,0.1);
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .card-platform:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 6px 20px rgba(14,116,255,0.12);
+                border-color: rgba(14,116,255,0.2);
+            }
+            .dark .card-platform {
+                background: #1F2937;
+                border-color: rgba(75,85,99,0.3);
+                box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+            }
+            .dark .card-platform:hover {
+                border-color: rgba(14,116,255,0.3);
+                box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            }
+            .scroll-mt-20 {
+                scroll-margin-top: 5rem;
+            }
+        }
+    </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="/" class="text-2xl font-bold text-blue-600">AI工具大全</a>
-            <nav class="hidden md:flex space-x-6">
-                <a href="/" class="hover:text-blue-600">首页</a>
-                <a href="/ai-platforms.html" class="text-blue-600 font-semibold">AI平台大全</a>
-                <a href="/tutorials.html" class="hover:text-blue-600">使用教程</a>
-                <a href="/sidejob.html" class="hover:text-blue-600">副业思路</a>
-                <a href="/welfare.html" class="hover:text-blue-600">干货福利</a>
-                <a href="/contact.html" class="hover:text-blue-600">联系我们</a>
-            </nav>
-        </div>
-    </header>
+<body class="bg-gray-50 dark:bg-tech-darkBg text-gray-800 dark:text-tech-darkText transition-colors duration-300">
+<div id="progress-bar"></div>
 
-    <main class="container mx-auto px-4 py-12 max-w-5xl">
-        <h1 class="text-3xl font-bold mb-8 text-center">AI平台大全（按类型分类）</h1>
-
-        <!-- 分类1：AI对话大模型 -->
-        <h2 class="text-2xl font-bold mb-6 mt-10">一、AI对话大模型（聊天/文案/推理）</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
-            <a href="/platforms/doubao.html" class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-center flex flex-col items-center">
-                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-3">
-                    <span class="text-blue-600 font-bold text-xl">豆包</span>
-                </div>
-                <h3 class="font-semibold">豆包AI</h3>
-                <p class="text-xs text-gray-500 mt-1">字节跳动出品，免费好用</p>
-            </a>
-            <a href="/platforms/kimi.html" class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-center flex flex-col items-center">
-                <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-3">
-                    <span class="text-purple-600 font-bold text-xl">Kimi</span>
-                </div>
-                <h3 class="font-semibold">Kimi AI</h3>
-                <p class="text-xs text-gray-500 mt-1">长文本处理强</p>
-            </a>
-            <a href="/platforms/tongyi.html" class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-center flex flex-col items-center">
-                <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-3">
-                    <span class="text-orange-600 font-bold text-xl">千问</span>
-                </div>
-                <h3 class="font-semibold">通义千问</h3>
-                <p class="text-xs text-gray-500 mt-1">阿里出品，功能全面</p>
-            </a>
-            <a href="/platforms/chatgpt.html" class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-center flex flex-col items-center">
-                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-3">
-                    <span class="text-green-600 font-bold text-xl">GPT</span>
-                </div>
-                <h3 class="font-semibold">ChatGPT</h3>
-                <p class="text-xs text-gray-500 mt-1">AI鼻祖，推理强</p>
-            </a>
+<!-- 导航栏 -->
+<header class="sticky top-0 z-50 bg-white/90 dark:bg-tech-darkBg/90 backdrop-blur-md border-b border-gray-100 dark:border-gray-800">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+        <a href="/" class="text-xl font-semibold text-tech-primary">AI工具大全</a>
+        <nav class="hidden md:flex items-center gap-6 text-sm text-gray-600 dark:text-gray-300">
+            <a href="/" class="hover:text-tech-primary transition-colors">首页</a>
+            <a href="/ai-platforms.html" class="text-tech-primary font-medium border-b-2 border-tech-primary pb-1">AI平台</a>
+            <a href="/tutorials.html" class="hover:text-tech-primary transition-colors">教程</a>
+            <a href="/sidejob.html" class="hover:text-tech-primary transition-colors">副业</a>
+            <a href="/cases.html" class="hover:text-tech-primary transition-colors">成功案例</a>
+            <a href="/contact.html" class="hover:text-tech-primary transition-colors">关于</a>
+        </nav>
+        <div class="flex items-center gap-3">
+            <button onclick="toggleDark()" class="text-lg hover:scale-110 transition-transform">🌓</button>
+            <button class="md:hidden text-lg hover:scale-110 transition-transform" onclick="openMenu()">☰</button>
         </div>
+    </div>
+</header>
 
-        <!-- 分类2：AI绘画工具 -->
-        <h2 class="text-2xl font-bold mb-6 mt-10">二、AI绘画工具（头像/海报/设计）</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
-            <a href="/platforms/wenxin.html" class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-center flex flex-col items-center">
-                <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-3">
-                    <span class="text-red-600 font-bold text-xl">文心</span>
-                </div>
-                <h3 class="font-semibold">文心一格</h3>
-                <p class="text-xs text-gray-500 mt-1">百度出品，中文友好</p>
-            </a>
-            <a href="/platforms/midjourney.html" class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-center flex flex-col items-center">
-                <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-3">
-                    <span class="text-indigo-600 font-bold text-xl">MJ</span>
-                </div>
-                <h3 class="font-semibold">Midjourney</h3>
-                <p class="text-xs text-gray-500 mt-1">画质顶尖，需付费</p>
-            </a>
-            <a href="#" class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-center flex flex-col items-center opacity-50">
-                <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-3">
-                    <span class="text-gray-600 font-bold text-xl">工具3</span>
-                </div>
-                <h3 class="font-semibold">待更新</h3>
-                <p class="text-xs text-gray-500 mt-1">敬请期待</p>
-            </a>
-            <a href="#" class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-center flex flex-col items-center opacity-50">
-                <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-3">
-                    <span class="text-gray-600 font-bold text-xl">工具4</span>
-                </div>
-                <h3 class="font-semibold">待更新</h3>
-                <p class="text-xs text-gray-500 mt-1">敬请期待</p>
-            </a>
-        </div>
+<!-- 移动端菜单 -->
+<div class="mobile-menu">
+    <div class="flex justify-between items-center mb-6">
+        <span class="font-medium text-gray-800 dark:text-white">菜单</span>
+        <button onclick="closeMenu()" class="text-xl hover:scale-110 transition-transform">✕</button>
+    </div>
+    <div class="flex flex-col gap-3 text-sm text-gray-600 dark:text-gray-300">
+        <a href="/" class="hover:text-tech-primary transition-colors">首页</a>
+        <a href="/ai-platforms.html" class="text-tech-primary font-medium">AI平台</a>
+        <a href="/tutorials.html" class="hover:text-tech-primary transition-colors">教程</a>
+        <a href="/sidejob.html" class="hover:text-tech-primary transition-colors">副业</a>
+        <a href="/cases.html" class="hover:text-tech-primary transition-colors">成功案例</a>
+        <a href="/contact.html" class="hover:text-tech-primary transition-colors">关于</a>
+    </div>
+</div>
+<div class="menu-mask" onclick="closeMenu()"></div>
 
-        <!-- 分类3：AI视频/剪辑工具 -->
-        <h2 class="text-2xl font-bold mb-6 mt-10">三、AI视频/剪辑工具（剪辑/配音/字幕）</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
-            <a href="/platforms/jianying.html" class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-center flex flex-col items-center">
-                <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mb-3">
-                    <span class="text-pink-600 font-bold text-xl">剪映</span>
-                </div>
-                <h3 class="font-semibold">剪映AI</h3>
-                <p class="text-xs text-gray-500 mt-1">免费，新手友好</p>
-            </a>
-            <a href="#" class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-center flex flex-col items-center opacity-50">
-                <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-3">
-                    <span class="text-gray-600 font-bold text-xl">工具2</span>
-                </div>
-                <h3 class="font-semibold">待更新</h3>
-                <p class="text-xs text-gray-500 mt-1">敬请期待</p>
-            </a>
-            <a href="#" class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-center flex flex-col items-center opacity-50">
-                <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-3">
-                    <span class="text-gray-600 font-bold text-xl">工具3</span>
-                </div>
-                <h3 class="font-semibold">待更新</h3>
-                <p class="text-xs text-gray-500 mt-1">敬请期待</p>
-            </a>
-            <a href="#" class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-center flex flex-col items-center opacity-50">
-                <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-3">
-                    <span class="text-gray-600 font-bold text-xl">工具4</span>
-                </div>
-                <h3 class="font-semibold">待更新</h3>
-                <p class="text-xs text-gray-500 mt-1">敬请期待</p>
-            </a>
-        </div>
+<main class="container mx-auto px-4 py-12 max-w-4xl">
+    <!-- 页面头部 -->
+    <section class="text-center mb-16">
+        <h1 class="text-3xl md:text-4xl font-light text-gray-800 dark:text-white mb-3 tracking-tight">AI平台大全</h1>
+        <p class="text-gray-500 dark:text-gray-400 max-w-xl mx-auto text-sm md:text-base">全分类主流AI工具收录 · 实时最新点评 · 新人友好推荐</p>
+    </section>
 
-        <!-- 分类4：其他AI工具 -->
-        <h2 class="text-2xl font-bold mb-6 mt-10">四、其他AI工具（文案/智能体/建站）</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
-            <a href="#" class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-center flex flex-col items-center opacity-50">
-                <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-3">
-                    <span class="text-gray-600 font-bold text-xl">文案</span>
+    <!-- 1.通用对话大模型 -->
+    <section id="chat" class="mb-16 scroll-mt-20">
+        <h2 class="text-xl font-medium text-gray-700 dark:text-gray-200 mb-6 flex items-center">
+            <span class="text-tech-primary mr-2">💬</span>通用对话大模型
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <a href="/platforms/doubao.html" class="card-platform p-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-tech-primary/10 dark:bg-tech-primary/20 flex items-center justify-center text-tech-primary font-medium">豆包</div>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium">豆包AI</p>
+                        <p class="text-xs text-gray-400">新人全能首选</p>
+                    </div>
                 </div>
-                <h3 class="font-semibold">待更新</h3>
-                <p class="text-xs text-gray-500 mt-1">文案生成工具</p>
             </a>
-            <a href="#" class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-center flex flex-col items-center opacity-50">
-                <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-3">
-                    <span class="text-gray-600 font-bold text-xl">智能体</span>
+            <div class="card-platform p-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center text-amber-500 font-medium">千问</div>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium">通义千问</p>
+                        <p class="text-xs text-gray-400">长文档办公强</p>
+                    </div>
                 </div>
-                <h3 class="font-semibold">待更新</h3>
-                <p class="text-xs text-gray-500 mt-1">智能体搭建工具</p>
-            </a>
-            <a href="#" class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-center flex flex-col items-center opacity-50">
-                <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-3">
-                    <span class="text-gray-600 font-bold text-xl">建站</span>
+            </div>
+            <div class="card-platform p-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center text-red-500 font-medium">文心</div>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium">文心一言</p>
+                        <p class="text-xs text-gray-400">知识问答首选</p>
+                    </div>
                 </div>
-                <h3 class="font-semibold">待更新</h3>
-                <p class="text-xs text-gray-500 mt-1">AI建站工具</p>
-            </a>
-            <a href="#" class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-center flex flex-col items-center opacity-50">
-                <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-3">
-                    <span class="text-gray-600 font-bold text-xl">更多</span>
+            </div>
+            <div class="card-platform p-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-500 font-medium">Kimi</div>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium">Kimi智能助手</p>
+                        <p class="text-xs text-gray-400">超长文档解析</p>
+                    </div>
                 </div>
-                <h3 class="font-semibold">待更新</h3>
-                <p class="text-xs text-gray-500 mt-1">持续收录中</p>
-            </a>
+            </div>
+            <div class="card-platform p-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-slate-500 font-medium">DS</div>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium">DeepSeek</p>
+                        <p class="text-xs text-gray-400">推理代码极强</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-platform p-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-500 font-medium">讯飞</div>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium">讯飞星火</p>
+                        <p class="text-xs text-gray-400">语音交互拔尖</p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </main>
+    </section>
 
-    <footer class="bg-gray-800 text-white py-8 mt-10">
-        <div class="container mx-auto px-4 text-center text-gray-400">
-            © 2026 AI工具大全 版权所有 | 专注AI工具测评与教程，助力新手快速上手
+    <!-- 2.AI绘画设计 -->
+    <section id="draw" class="mb-16 scroll-mt-20">
+        <h2 class="text-xl font-medium text-gray-700 dark:text-gray-200 mb-6 flex items-center">
+            <span class="text-tech-primary mr-2">🎨</span>AI绘画设计
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div class="card-platform p-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-pink-100 dark:bg-pink-900/30 flex items-center justify-center text-pink-500 font-medium">MJ</div>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium">Midjourney</p>
+                        <p class="text-xs text-gray-400">艺术插画天花板</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-platform p-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-cyan-100 dark:bg-cyan-900/30 flex items-center justify-center text-cyan-500 font-medium">即梦</div>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium">即梦AI绘画</p>
+                        <p class="text-xs text-gray-400">国内新手免费首选</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-platform p-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-violet-100 dark:bg-violet-900/30 flex items-center justify-center text-violet-500 font-medium">SD</div>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium">Stable Diffusion</p>
+                        <p class="text-xs text-gray-400">开源自由度高</p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </footer>
+    </section>
+
+    <!-- 3.AI视频创作 -->
+    <section id="video" class="mb-16 scroll-mt-20">
+        <h2 class="text-xl font-medium text-gray-700 dark:text-gray-200 mb-6 flex items-center">
+            <span class="text-tech-primary mr-2">🎬</span>AI视频创作
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div class="card-platform p-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-500 font-medium">可灵</div>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium">可灵AI Kling</p>
+                        <p class="text-xs text-gray-400">影视级文生视频</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-platform p-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center text-orange-500 font-medium">剪映</div>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium">剪映AI</p>
+                        <p class="text-xs text-gray-400">免费剪辑全能</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4.AI办公效率 -->
+    <section id="office" class="mb-16 scroll-mt-20">
+        <h2 class="text-xl font-medium text-gray-700 dark:text-gray-200 mb-6 flex items-center">
+            <span class="text-tech-primary mr-2">📑</span>AI办公效率
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div class="card-platform p-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center text-red-500 font-medium">WPS</div>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium">WPS AI</p>
+                        <p class="text-xs text-gray-400">文档PPT一键生成</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5.AI文案创作 -->
+    <section id="copy" class="mb-16 scroll-mt-20">
+        <h2 class="text-xl font-medium text-gray-700 dark:text-gray-200 mb-6 flex items-center">
+            <span class="text-tech-primary mr-2">✍️</span>AI文案创作
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div class="card-platform p-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-teal-100 dark:bg-teal-900/30 flex items-center justify-center text-teal-500 font-medium">写作猫</div>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium">秘塔写作猫</p>
+                        <p class="text-xs text-gray-400">文案校对润色</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6.AI编程开发 -->
+    <section id="code" class="mb-16 scroll-mt-20">
+        <h2 class="text-xl font-medium text-gray-700 dark:text-gray-200 mb-6 flex items-center">
+            <span class="text-tech-primary mr-2">💻</span>AI编程开发
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div class="card-platform p-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-slate-500 font-medium">Copilot</div>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium">GitHub Copilot</p>
+                        <p class="text-xs text-gray-400">代码补全神器</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7.AI音频配音 -->
+    <section id="audio" class="mb-16 scroll-mt-20">
+        <h2 class="text-xl font-medium text-gray-700 dark:text-gray-200 mb-6 flex items-center">
+            <span class="text-tech-primary mr-2">🔊</span>AI音频配音
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div class="card-platform p-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-500 font-medium">EL</div>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium">ElevenLabs</p>
+                        <p class="text-xs text-gray-400">AI配音质感顶级</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8.AI学习教育 -->
+    <section id="study" class="mb-16 scroll-mt-20">
+        <h2 class="text-xl font-medium text-gray-700 dark:text-gray-200 mb-6 flex items-center">
+            <span class="text-tech-primary mr-2">📚</span>AI学习教育
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div class="card-platform p-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-500 font-medium">DeepL</div>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium">DeepL翻译</p>
+                        <p class="text-xs text-gray-400">多语种翻译精准</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="py-6 text-center text-xs text-gray-400 dark:text-gray-500">
+    © 2026 AI工具大全 · 全分类AI工具精准收录
+</footer>
+
+<div id="backTop" onclick="backToTop()" class="fixed bottom-6 right-6 w-10 h-10 rounded-full bg-white dark:bg-tech-darkCard shadow-lg flex items-center justify-center text-gray-600 dark:text-gray-300 opacity-0 invisible transition-all hover:scale-110">↑</div>
+
 </body>
 </html>
