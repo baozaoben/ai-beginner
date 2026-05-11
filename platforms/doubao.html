@@ -41,29 +41,36 @@
                 <p class="text-xs text-gray-500 mt-2">通过此链接注册，后续开通会员可享专属返利（不影响你的使用和价格）</p>
             </div>
 
-            <!-- 一、工具介绍（精简版） -->
-            <h2 class="text-xl font-semibold mb-3">一、工具介绍</h2>
-            <p class="mb-6 text-gray-700">豆包是字节跳动自主研发的AI对话大模型，无需科学上网，国内直接访问，完全免费（无广告、无次数限制），支持聊天、文案生成、代码辅助、翻译、文章总结等多种功能，新手零门槛上手。</p>
+            <!-- 工具介绍（去掉“一、”，精简排版） -->
+            <h2 class="text-xl font-semibold mb-3">工具介绍</h2>
+            <p class="mb-8 text-gray-700">豆包是字节跳动自主研发的AI对话大模型，无需科学上网，国内直接访问，完全免费（无广告、无次数限制），支持聊天、文案生成、代码辅助、翻译、文章总结等多种功能，新手零门槛上手。</p>
 
-            <!-- 二、优势亮点（精简版） -->
-            <h2 class="text-xl font-semibold mb-3">二、优势亮点</h2>
-            <ul class="list-disc pl-5 mb-6 space-y-2 text-gray-700">
-                <li>完全免费：无对话次数限制、无功能阉割，日常使用完全够用；</li>
-                <li>国内流畅访问：不用科学上网，打开网页就能用，响应速度快；</li>
-                <li>新手友好：界面简洁，不用复杂设置，输入问题就能得到精准回复；</li>
-                <li>功能全面：覆盖文案、代码、翻译、总结、绘画（内置）等全场景；</li>
-                <li>多端同步：支持网页版、手机APP，登录账号即可同步聊天记录。</li>
-            </ul>
+            <!-- 折叠模块1：优势亮点+缺点限制（整合为一个） -->
+            <div class="border rounded-lg mb-4 overflow-hidden">
+                <button onclick="toggleSection('pros-cons')" class="w-full p-4 text-left bg-gray-50 hover:bg-gray-100 flex justify-between items-center">
+                    <span class="font-semibold text-lg">📋 优势亮点与缺点限制</span>
+                    <span id="pros-cons-arrow" class="transition-transform duration-300">▼</span>
+                </button>
+                <div id="pros-cons" class="hidden p-4 border-t">
+                    <h3 class="font-semibold mb-3 text-base">优势亮点</h3>
+                    <ul class="list-disc pl-5 mb-6 space-y-2 text-gray-700">
+                        <li>完全免费：无对话次数限制、无功能阉割，日常使用完全够用；</li>
+                        <li>国内流畅访问：不用科学上网，打开网页就能用，响应速度快；</li>
+                        <li>新手友好：界面简洁，不用复杂设置，输入问题就能得到精准回复；</li>
+                        <li>功能全面：覆盖文案、代码、翻译、总结、绘画（内置）等全场景；</li>
+                        <li>多端同步：支持网页版、手机APP，登录账号即可同步聊天记录。</li>
+                    </ul>
 
-            <!-- 三、缺点与限制（精简版） -->
-            <h2 class="text-xl font-semibold mb-3">三、缺点与限制</h2>
-            <ul class="list-disc pl-5 mb-8 space-y-2 text-gray-700">
-                <li>复杂逻辑推理能力，略逊于ChatGPT、Kimi；</li>
-                <li>部分高级功能（如大文件上传）需要开通会员；</li>
-                <li>生成内容偶尔会有重复，需手动优化。</li>
-            </ul>
+                    <h3 class="font-semibold mb-3 text-base">缺点限制</h3>
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <li>复杂逻辑推理能力，略逊于ChatGPT、Kimi；</li>
+                        <li>部分高级功能（如大文件上传）需要开通会员；</li>
+                        <li>生成内容偶尔会有重复，需手动优化。</li>
+                    </ul>
+                </div>
+            </div>
 
-            <!-- 折叠模块1：实战案例 - 用豆包写小红书文案 -->
+            <!-- 折叠模块2：实战案例 - 用豆包写小红书文案 -->
             <div class="border rounded-lg mb-4 overflow-hidden">
                 <button onclick="toggleSection('case1')" class="w-full p-4 text-left bg-gray-50 hover:bg-gray-100 flex justify-between items-center">
                     <span class="font-semibold text-lg">📝 实战案例：用豆包写爆款小红书文案</span>
@@ -116,7 +123,7 @@
                 </div>
             </div>
 
-            <!-- 折叠模块2：新手使用教程 -->
+            <!-- 折叠模块3：新手使用教程 -->
             <div class="border rounded-lg mb-4 overflow-hidden">
                 <button onclick="toggleSection('tutorial')" class="w-full p-4 text-left bg-gray-50 hover:bg-gray-100 flex justify-between items-center">
                     <span class="font-semibold text-lg">📚 新手使用教程（3步上手）</span>
@@ -140,7 +147,7 @@
                 </div>
             </div>
 
-            <!-- 折叠模块3：实用技巧与避坑指南 -->
+            <!-- 折叠模块4：实用技巧与避坑指南 -->
             <div class="border rounded-lg overflow-hidden">
                 <button onclick="toggleSection('tips')" class="w-full p-4 text-left bg-gray-50 hover:bg-gray-100 flex justify-between items-center">
                     <span class="font-semibold text-lg">💡 实用技巧与避坑指南</span>
