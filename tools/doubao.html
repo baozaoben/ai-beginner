@@ -3,208 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>豆包AI 使用教程 | AI工具大全</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/style.css">
-    <script src="/js/main.js" defer></script>
+    <title>豆包AI - 国内全能智能对话大模型</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        tech: {
+                            primary: '#0E74FF',
+                            darkBg: '#111827',
+                            darkCard: '#1F2937',
+                            darkText: '#F3F4F6'
+                        }
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+        }
+    </style>
 </head>
-<body>
-<div id="progress-bar"></div>
+<body class="bg-gray-50 dark:bg-tech-darkBg text-gray-800 dark:text-tech-darkText transition-colors duration-300">
 
 <!-- 导航栏 -->
-<header class="glass-nav sticky top-0 z-50">
-    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-        <a href="/" class="text-2xl font-bold text-[#165DFF]">AI工具大全</a>
-        <nav class="hidden md:flex space-x-6">
-            <a href="/" class="hover:text-[#165DFF] transition-colors">首页</a>
-            <a href="/ai-platforms.html" class="text-[#165DFF] font-medium border-b-2 border-[#165DFF] pb-1">AI平台大全</a>
-            <a href="/tutorials.html" class="hover:text-[#165DFF] transition-colors">使用教程</a>
-            <a href="/sidejob.html" class="hover:text-[#165DFF] transition-colors">副业思路</a>
-            <a href="/welfare.html" class="hover:text-[#165DFF] transition-colors">干货福利</a>
-            <a href="/contact.html" class="hover:text-[#165DFF] transition-colors">联系我们</a>
+<header class="sticky top-0 z-50 bg-white/90 dark:bg-tech-darkBg/90 backdrop-blur-md border-b border-gray-100 dark:border-gray-800">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+        <a href="/" class="text-xl font-semibold text-tech-primary">AI工具大全</a>
+        <nav class="hidden md:flex items-center gap-6 text-sm text-gray-600 dark:text-gray-300">
+            <a href="/" class="hover:text-tech-primary transition-colors">首页</a>
+            <a href="/ai-platforms.html" class="text-tech-primary font-medium border-b-2 border-tech-primary pb-1">AI平台</a>
+            <a href="/about.html" class="hover:text-tech-primary transition-colors">关于</a>
         </nav>
-        <div class="flex items-center gap-4">
-            <button onclick="toggleDark()" class="text-lg">🌓</button>
-            <button class="md:hidden text-xl" onclick="openMenu()">☰</button>
+        <div class="flex items-center gap-3">
+            <button onclick="toggleDark()" class="text-lg hover:scale-110 transition-transform">🌓</button>
+            <button class="md:hidden text-lg hover:scale-110 transition-transform" onclick="openMenu()">☰</button>
         </div>
     </div>
 </header>
 
-<!-- 移动端侧边菜单 -->
-<div class="mobile-menu">
+<!-- 移动端菜单 -->
+<div class="mobile-menu fixed inset-0 z-50 bg-white dark:bg-tech-darkBg p-6 transform translate-x-full transition-transform duration-300">
     <div class="flex justify-between items-center mb-6">
-        <span class="font-bold text-lg">菜单导航</span>
-        <button onclick="closeMenu()" class="text-xl">✕</button>
+        <span class="font-medium text-gray-800 dark:text-white">菜单</span>
+        <button onclick="closeMenu()" class="text-xl hover:scale-110 transition-transform">✕</button>
     </div>
-    <div class="flex flex-col space-y-4">
-        <a href="/" class="py-2 hover:text-[#165DFF]">首页</a>
-        <a href="/ai-platforms.html" class="py-2 text-[#165DFF] font-medium">AI平台大全</a>
-        <a href="/tutorials.html" class="py-2 hover:text-[#165DFF]">使用教程</a>
-        <a href="/sidejob.html" class="py-2 hover:text-[#165DFF]">副业思路</a>
-        <a href="/welfare.html" class="py-2 hover:text-[#165DFF]">干货福利</a>
-        <a href="/contact.html" class="py-2 hover:text-[#165DFF]">联系我们</a>
+    <div class="flex flex-col gap-3 text-sm text-gray-600 dark:text-gray-300">
+        <a href="/" class="py-2 border-b border-gray-100 dark:border-gray-800 hover:text-tech-primary">首页</a>
+        <a href="/ai-platforms.html" class="py-2 border-b border-gray-100 dark:border-gray-800 text-tech-primary font-medium">AI平台</a>
+        <a href="/about.html" class="py-2 hover:text-tech-primary">关于</a>
     </div>
 </div>
-<div class="menu-mask" onclick="closeMenu()"></div>
+<div class="menu-mask fixed inset-0 bg-black/50 z-40 hidden" onclick="closeMenu()"></div>
 
-<main class="container mx-auto px-4 py-8 max-w-3xl fade-in">
-    <!-- 面包屑导航 -->
-    <div class="text-sm text-[#86909C] mb-6">
-        <a href="/" class="hover:text-[#165DFF]">首页</a>
-        <span class="mx-2">/</span>
-        <a href="/ai-platforms.html" class="hover:text-[#165DFF]">AI平台大全</a>
-        <span class="mx-2">/</span>
-        <span class="text-[#1D2129]">豆包AI</span>
+<main class="container mx-auto px-4 py-10 max-w-3xl">
+    <div class="bg-white dark:bg-tech-darkCard rounded-2xl p-6 shadow-md">
+        <div class="flex items-center gap-3 mb-6">
+            <div class="w-12 h-12 rounded-full bg-tech-primary/10 dark:bg-tech-primary/20 flex items-center justify-center text-tech-primary font-bold text-lg">豆包</div>
+            <div>
+                <h1 class="text-2xl font-bold">豆包AI</h1>
+                <p class="text-gray-500 dark:text-gray-400">字节旗下全能大模型 · 新手入门首选AI</p>
+            </div>
+        </div>
+
+        <h2 class="text-lg font-semibold mt-6 mb-2">📌 工具简介</h2>
+        <p class="text-gray-600 dark:text-gray-300">豆包AI是字节跳动推出的国产全能大模型，免费额度充足，支持文案写作、代码生成、学习辅导、办公总结、多模态识图等功能，中文理解自然流畅，零门槛适合所有新手使用。</p>
+
+        <h2 class="text-lg font-semibold mt-6 mb-2">✨ 核心功能</h2>
+        <ul class="list-disc pl-5 text-gray-600 dark:text-gray-300 space-y-1">
+            <li>文案创作、短视频脚本、公众号推文一键生成</li>
+            <li>编程代码编写、改错、逻辑讲解、网站开发辅助</li>
+            <li>学生作业辅导、知识点梳理、备考答疑</li>
+            <li>办公周报、月报、方案策划、文档总结</li>
+            <li>图片识图解读、多模态图文问答</li>
+        </ul>
+
+        <h2 class="text-lg font-semibold mt-6 mb-2">💡 使用小技巧</h2>
+        <ul class="list-disc pl-5 text-gray-600 dark:text-gray-300 space-y-1">
+            <li>给AI设定职业角色，输出内容更专业</li>
+            <li>长需求拆分多条提问，结果更精准</li>
+            <li>支持润色、扩写、精简、换风格一键改写</li>
+        </ul>
+
+        <h2 class="text-lg font-semibold mt-6 mb-2">⭐ 适合人群</h2>
+        <p class="text-gray-600 dark:text-gray-300">新手小白、自媒体博主、学生、上班族、居家创业人群。</p>
+
+        <h2 class="text-lg font-semibold mt-6 mb-2">🔗 官方入口</h2>
+        <a href="https://www.doubao.com" target="_blank" class="text-tech-primary hover:underline">https://www.doubao.com</a>
     </div>
 
-    <article class="card p-8">
-        <!-- 头部LOGO+标题+标签 -->
-        <div class="flex flex-col md:flex-row items-center mb-8 gap-6">
-            <div class="w-24 h-24 rounded-full border border-[#E5E6EB] overflow-hidden flex items-center justify-center bg-white">
-                <span class="text-[#165DFF] font-bold text-2xl">豆包</span>
-            </div>
-            <div>
-                <div class="flex flex-wrap items-center gap-3 mb-2">
-                    <h1 class="text-3xl font-bold text-[#1D2129]">豆包AI 使用教程</h1>
-                    <span class="bg-[#E8F3FF] text-[#165DFF] text-xs px-3 py-1 rounded-full">免费工具</span>
-                    <span class="bg-[#E8F3FF] text-[#165DFF] text-xs px-3 py-1 rounded-full">国内可用</span>
-                    <span class="bg-green-100 text-green-700 text-xs px-3 py-1 rounded-full">新手友好</span>
-                </div>
-                <!-- 五星评分 -->
-                <div class="flex items-center my-3">
-                    <span class="star text-lg">★★★★★</span>
-                    <span class="ml-2 text-sm text-[#86909C]">综合评分 5.0 / 5.0</span>
-                </div>
-                <p class="text-[#4E5969] mt-2">字节跳动自研AI大模型，无需翻墙国内直连，支持文案创作、办公写作、代码生成、学习答疑，零基础直接上手。</p>
-            </div>
-        </div>
-
-        <!-- 官方入口 -->
-        <div class="bg-[#E8F3FF] p-4 rounded-lg mb-8 text-center">
-            <p class="font-semibold mb-3">👉 豆包官方直达入口（无广告正版）</p>
-            <div class="flex justify-center flex-wrap gap-4">
-                <a href="https://www.doubao.com/" target="_blank" class="btn-primary">网页版入口</a>
-                <a href="#" class="btn-outline">APP下载入口</a>
-            </div>
-            <p class="text-xs text-[#86909C] mt-3">通过本站链接注册，可同步解锁更多进阶使用技巧</p>
-        </div>
-
-        <!-- 工具介绍 -->
-        <h2 class="text-xl font-semibold text-[#1D2129] mb-3">工具介绍</h2>
-        <p class="mb-8 text-[#4E5969]">
-            豆包是字节跳动推出的全民级AI对话大模型，完全免费基础使用，无需科学上网，国内访问速度快。
-            覆盖日常聊天、文案创作、自媒体写作、办公总结、编程写代码、家庭教育答疑、思路策划等全场景，支持多端同步，手机电脑无缝切换。
-        </p>
-
-        <!-- 折叠1：优势亮点与缺点限制 手风琴 -->
-        <div class="collapse-item">
-            <div class="collapse-header" onclick="toggleCollapse('info1')">
-                <span class="font-semibold text-lg">📋 优势亮点 & 缺点限制</span>
-                <span id="info1-icon" class="collapse-icon text-xl">+</span>
-            </div>
-            <div id="info1" class="collapse-content hidden">
-                <h3 class="font-semibold mb-2 text-[#165DFF]">核心优势</h3>
-                <ul class="list-disc pl-5 mb-6 space-y-2">
-                    <li>基础功能永久免费，无次数阉割</li>
-                    <li>国内服务器，访问速度极快无需翻墙</li>
-                    <li>界面简洁新手零学习成本</li>
-                    <li>文案、办公、代码、学习全能适配</li>
-                    <li>支持网页、APP多端账号同步</li>
-                </ul>
-                <h3 class="font-semibold mb-2 text-[#FF7D00]">不足与限制</h3>
-                <ul class="list-disc pl-5 space-y-2">
-                    <li>超高逻辑推理略逊专业模型</li>
-                    <li>大文件长文档需要会员解锁</li>
-                    <li>部分创作内容需要人工微调优化</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- 折叠2：新手快速上手教程 -->
-        <div class="collapse-item">
-            <div class="collapse-header" onclick="toggleCollapse('info2')">
-                <span class="font-semibold text-lg">📚 新手3分钟快速上手教程</span>
-                <span id="info2-icon" class="collapse-icon text-xl">+</span>
-            </div>
-            <div id="info2" class="collapse-content hidden">
-                <ol class="list-decimal pl-5 space-y-3">
-                    <li>点击上方「网页版入口」进入豆包官网</li>
-                    <li>使用抖音/手机号一键登录</li>
-                    <li>直接在输入框输入需求，发送即可生成内容</li>
-                    <li>可连续对话、追问、改写、优化内容</li>
-                </ol>
-            </div>
-        </div>
-
-        <!-- 折叠3：实战案例 文案生成 -->
-        <div class="collapse-item">
-            <div class="collapse-header" onclick="toggleCollapse('info3')">
-                <span class="font-semibold text-lg">📝 实战案例：一键生成小红书文案</span>
-                <span id="info3-icon" class="collapse-icon text-xl">+</span>
-            </div>
-            <div id="info3" class="collapse-content hidden">
-                <p class="mb-3 text-[#4E5969]">复制下方提示词，直接发给豆包，即可生成爆款小红书文案。</p>
-                <div class="copy-block">
-                    <button class="copy-btn" onclick="copyText(this)">复制</button>
-<pre>帮我写一篇AI工具网站的小红书种草文案，语气生活化、接地气，带emoji，分段清晰，吸引人点击收藏。</pre>
-                </div>
-                <p class="mt-4 text-sm text-[#86909C]">发送后可继续让它改写、缩短、换风格，非常适合自媒体新手。</p>
-            </div>
-        </div>
-
-        <!-- 折叠4：实用技巧与避坑指南 -->
-        <div class="collapse-item">
-            <div class="collapse-header" onclick="toggleCollapse('info4')">
-                <span class="font-semibold text-lg">💡 实用技巧 & 避坑指南</span>
-                <span id="info4-icon" class="collapse-icon text-xl">+</span>
-            </div>
-            <div id="info4" class="collapse-content hidden">
-                <ul class="list-disc pl-5 space-y-2">
-                    <li>指令越详细，生成内容越精准</li>
-                    <li>加上“说人话、接地气、分点列出”效果更好</li>
-                    <li>生成不满意直接让它「重新写、简化、扩充」</li>
-                    <li>敏感内容拆分提问，更容易通过</li>
-                    <li>常用提示词保存下来，重复使用效率更高</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- 相关推荐 -->
-        <div class="mt-10">
-            <h3 class="font-semibold text-lg mb-4">🔗 相关AI工具推荐</h3>
-            <div class="grid grid-cols-2 gap-4">
-                <a href="#" class="card p-4 text-center hover:-translate-y-1 transition-all">
-                    <p class="font-medium">Kimi智能助手</p>
-                    <p class="text-xs text-[#86909C]">长文档解析神器</p>
-                </a>
-                <a href="#" class="card p-4 text-center hover:-translate-y-1 transition-all">
-                    <p class="font-medium">通义千问</p>
-                    <p class="text-xs text-[#86909C]">阿里出品专业大模型</p>
-                </a>
-            </div>
-        </div>
-
-        <!-- 引流模块 -->
-        <div class="bg-[#E8F3FF] rounded-lg p-6 mt-10 text-center">
-            <p class="font-semibold mb-2">💡 获取全套豆包万能提示词模板</p>
-            <p class="text-[#4E5969] text-sm mb-4">包含自媒体、办公、副业、建站全套可直接复制指令</p>
-            <a href="/welfare.html" class="btn-primary">立即前往领取</a>
-        </div>
-    </article>
+    <div class="mt-8">
+        <a href="/ai-platforms.html" class="inline-block px-5 py-2 bg-tech-primary text-white rounded-lg hover:opacity-90">← 返回AI平台列表</a>
+    </div>
 </main>
 
-<!-- 底部 -->
-<footer class="bg-[#1D2129] text-white py-8 mt-10">
-    <div class="container mx-auto px-4 text-center text-sm text-gray-400">
-        © 2026 AI工具大全 版权所有 | 专注AI工具测评、实战教程与副业思路分享
-    </div>
+<footer class="py-6 text-center text-xs text-gray-400 dark:text-gray-500">
+    © 2026 AI工具大全 · 全分类AI工具精准收录
 </footer>
 
-<!-- 回到顶部按钮 -->
-<div id="backTop" onclick="backToTop()">↑</div>
+<script>
+    // 明暗模式
+    function toggleDark() {
+        document.documentElement.classList.toggle('dark');
+        localStorage.setItem('dark', document.documentElement.classList.contains('dark'));
+    }
+    if (localStorage.getItem('dark') === 'true') document.documentElement.classList.add('dark');
+
+    // 移动端菜单
+    function openMenu() {
+        document.querySelector('.mobile-menu').classList.remove('translate-x-full');
+        document.querySelector('.menu-mask').classList.remove('hidden');
+    }
+    function closeMenu() {
+        document.querySelector('.mobile-menu').classList.add('translate-x-full');
+        document.querySelector('.menu-mask').classList.add('hidden');
+    }
+</script>
 
 </body>
 </html>
