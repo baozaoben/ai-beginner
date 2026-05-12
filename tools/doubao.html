@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>豆包AI - 国内全能智能对话大模型</title>
+    <title>豆包AI - 字节旗下全能大模型 · 新手入门首选AI</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -14,12 +14,8 @@
                         tech: {
                             primary: '#0E74FF',
                             darkBg: '#111827',
-                            darkCard: '#1F2937',
-                            darkText: '#F3F4F6'
+                            darkCard: '#1F2937'
                         }
-                    },
-                    fontFamily: {
-                        inter: ['Inter', 'sans-serif']
                     }
                 }
             }
@@ -27,14 +23,11 @@
     </script>
     <style type="text/tailwindcss">
         @layer utilities {
-            .content-auto {
-                content-visibility: auto;
-            }
+            .content-auto { content-visibility: auto; }
         }
     </style>
 </head>
-<body class="bg-gray-50 dark:bg-tech-darkBg text-gray-800 dark:text-tech-darkText transition-colors duration-300">
-
+<body class="bg-gray-50 dark:bg-tech-darkBg text-gray-800 dark:text-gray-100">
 <!-- 导航栏 -->
 <header class="sticky top-0 z-50 bg-white/90 dark:bg-tech-darkBg/90 backdrop-blur-md border-b border-gray-100 dark:border-gray-800">
     <div class="container mx-auto px-4 py-3 flex justify-between items-center">
@@ -44,29 +37,14 @@
             <a href="/ai-platforms.html" class="text-tech-primary font-medium border-b-2 border-tech-primary pb-1">AI平台</a>
             <a href="/about.html" class="hover:text-tech-primary transition-colors">关于</a>
         </nav>
-        <div class="flex items-center gap-3">
-            <button onclick="toggleDark()" class="text-lg hover:scale-110 transition-transform">🌓</button>
-            <button class="md:hidden text-lg hover:scale-110 transition-transform" onclick="openMenu()">☰</button>
-        </div>
+        <button onclick="toggleDark()" class="text-lg">🌓</button>
     </div>
 </header>
 
-<!-- 移动端菜单 -->
-<div class="mobile-menu fixed inset-0 z-50 bg-white dark:bg-tech-darkBg p-6 transform translate-x-full transition-transform duration-300">
-    <div class="flex justify-between items-center mb-6">
-        <span class="font-medium text-gray-800 dark:text-white">菜单</span>
-        <button onclick="closeMenu()" class="text-xl hover:scale-110 transition-transform">✕</button>
-    </div>
-    <div class="flex flex-col gap-3 text-sm text-gray-600 dark:text-gray-300">
-        <a href="/" class="py-2 border-b border-gray-100 dark:border-gray-800 hover:text-tech-primary">首页</a>
-        <a href="/ai-platforms.html" class="py-2 border-b border-gray-100 dark:border-gray-800 text-tech-primary font-medium">AI平台</a>
-        <a href="/about.html" class="py-2 hover:text-tech-primary">关于</a>
-    </div>
-</div>
-<div class="menu-mask fixed inset-0 bg-black/50 z-40 hidden" onclick="closeMenu()"></div>
-
 <main class="container mx-auto px-4 py-10 max-w-3xl">
+    <!-- 单卡片容器，就是你截图里的大卡片 -->
     <div class="bg-white dark:bg-tech-darkCard rounded-2xl p-6 shadow-md">
+        <!-- 卡片头部：Logo+标题+副标题 -->
         <div class="flex items-center gap-3 mb-6">
             <div class="w-12 h-12 rounded-full bg-tech-primary/10 dark:bg-tech-primary/20 flex items-center justify-center text-tech-primary font-bold text-lg">豆包</div>
             <div>
@@ -75,10 +53,18 @@
             </div>
         </div>
 
-        <h2 class="text-lg font-semibold mt-6 mb-2">📌 工具简介</h2>
-        <p class="text-gray-600 dark:text-gray-300">豆包AI是字节跳动推出的国产全能大模型，免费额度充足，支持文案写作、代码生成、学习辅导、办公总结、多模态识图等功能，中文理解自然流畅，零门槛适合所有新手使用。</p>
+        <!-- 工具简介模块 -->
+        <h2 class="text-lg font-semibold mt-6 mb-2 flex items-center gap-2">
+            <span>📌</span> 工具简介
+        </h2>
+        <p class="text-gray-600 dark:text-gray-300">
+            豆包AI是字节跳动推出的国产全能大模型，免费额度充足，支持文案写作、代码生成、学习辅导、办公总结、多模态识图等功能，中文理解自然流畅，零门槛适合所有新手使用。
+        </p>
 
-        <h2 class="text-lg font-semibold mt-6 mb-2">✨ 核心功能</h2>
+        <!-- 核心功能模块 -->
+        <h2 class="text-lg font-semibold mt-6 mb-2 flex items-center gap-2">
+            <span>✨</span> 核心功能
+        </h2>
         <ul class="list-disc pl-5 text-gray-600 dark:text-gray-300 space-y-1">
             <li>文案创作、短视频脚本、公众号推文一键生成</li>
             <li>编程代码编写、改错、逻辑讲解、网站开发辅助</li>
@@ -87,47 +73,46 @@
             <li>图片识图解读、多模态图文问答</li>
         </ul>
 
-        <h2 class="text-lg font-semibold mt-6 mb-2">💡 使用小技巧</h2>
+        <!-- 使用小技巧模块 -->
+        <h2 class="text-lg font-semibold mt-6 mb-2 flex items-center gap-2">
+            <span>💡</span> 使用小技巧
+        </h2>
         <ul class="list-disc pl-5 text-gray-600 dark:text-gray-300 space-y-1">
             <li>给AI设定职业角色，输出内容更专业</li>
             <li>长需求拆分多条提问，结果更精准</li>
             <li>支持润色、扩写、精简、换风格一键改写</li>
         </ul>
 
-        <h2 class="text-lg font-semibold mt-6 mb-2">⭐ 适合人群</h2>
-        <p class="text-gray-600 dark:text-gray-300">新手小白、自媒体博主、学生、上班族、居家创业人群。</p>
+        <!-- 适合人群模块 -->
+        <h2 class="text-lg font-semibold mt-6 mb-2 flex items-center gap-2">
+            <span>⭐</span> 适合人群
+        </h2>
+        <p class="text-gray-600 dark:text-gray-300">
+            新手小白、自媒体博主、学生、上班族、居家创业人群。
+        </p>
 
-        <h2 class="text-lg font-semibold mt-6 mb-2">🔗 官方入口</h2>
+        <!-- 官方入口模块 -->
+        <h2 class="text-lg font-semibold mt-6 mb-2 flex items-center gap-2">
+            <span>🔗</span> 官方入口
+        </h2>
         <a href="https://www.doubao.com" target="_blank" class="text-tech-primary hover:underline">https://www.doubao.com</a>
     </div>
 
-    <div class="mt-8">
-        <a href="/ai-platforms.html" class="inline-block px-5 py-2 bg-tech-primary text-white rounded-lg hover:opacity-90">← 返回AI平台列表</a>
+    <!-- 底部返回按钮，和你截图里的一样 -->
+    <div class="mt-6">
+        <a href="/ai-platforms.html" class="inline-block px-4 py-2 bg-tech-primary text-white rounded-lg">← 返回AI平台列表</a>
     </div>
 </main>
 
-<footer class="py-6 text-center text-xs text-gray-400 dark:text-gray-500">
-    © 2026 AI工具大全 · 全分类AI工具精准收录
-</footer>
-
 <script>
-    // 明暗模式
-    function toggleDark() {
-        document.documentElement.classList.toggle('dark');
-        localStorage.setItem('dark', document.documentElement.classList.contains('dark'));
-    }
-    if (localStorage.getItem('dark') === 'true') document.documentElement.classList.add('dark');
-
-    // 移动端菜单
-    function openMenu() {
-        document.querySelector('.mobile-menu').classList.remove('translate-x-full');
-        document.querySelector('.menu-mask').classList.remove('hidden');
-    }
-    function closeMenu() {
-        document.querySelector('.mobile-menu').classList.add('translate-x-full');
-        document.querySelector('.menu-mask').classList.add('hidden');
-    }
+// 深色模式切换
+function toggleDark() {
+    document.documentElement.classList.toggle('dark');
+    localStorage.setItem('dark', document.documentElement.classList.contains('dark'));
+}
+if (localStorage.getItem('dark') === 'true') {
+    document.documentElement.classList.add('dark');
+}
 </script>
-
 </body>
 </html>
