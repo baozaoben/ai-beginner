@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>豆包AI 详细介绍 - AI工具大全</title>
+    <title>豆包AI - 国内全能智能对话大模型</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -15,8 +14,12 @@
                         tech: {
                             primary: '#0E74FF',
                             darkBg: '#111827',
-                            darkCard: '#1F2937'
+                            darkCard: '#1F2937',
+                            darkText: '#F3F4F6'
                         }
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif']
                     }
                 }
             }
@@ -24,132 +27,107 @@
     </script>
     <style type="text/tailwindcss">
         @layer utilities {
-            .tab-active {
-                border-bottom: 2px solid #0E74FF;
-                color: #0E74FF;
+            .content-auto {
+                content-visibility: auto;
             }
-            .content-auto { content-visibility: auto; }
         }
     </style>
 </head>
-<body class="bg-gray-50 dark:bg-tech-darkBg text-gray-800 dark:text-gray-100">
-<!-- 主导航 -->
-<header class="sticky top-0 z-50 bg-white/90 dark:bg-tech-darkBg/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+<body class="bg-gray-50 dark:bg-tech-darkBg text-gray-800 dark:text-tech-darkText transition-colors duration-300">
+
+<!-- 导航栏 -->
+<header class="sticky top-0 z-50 bg-white/90 dark:bg-tech-darkBg/90 backdrop-blur-md border-b border-gray-100 dark:border-gray-800">
     <div class="container mx-auto px-4 py-3 flex justify-between items-center">
         <a href="/" class="text-xl font-semibold text-tech-primary">AI工具大全</a>
-        <nav class="hidden md:flex items-center gap-6 text-sm">
+        <nav class="hidden md:flex items-center gap-6 text-sm text-gray-600 dark:text-gray-300">
             <a href="/" class="hover:text-tech-primary transition-colors">首页</a>
             <a href="/ai-platforms.html" class="text-tech-primary font-medium border-b-2 border-tech-primary pb-1">AI平台</a>
             <a href="/about.html" class="hover:text-tech-primary transition-colors">关于</a>
         </nav>
-        <button id="darkBtn" class="text-lg">🌓</button>
+        <div class="flex items-center gap-3">
+            <button onclick="toggleDark()" class="text-lg hover:scale-110 transition-transform">🌓</button>
+            <button class="md:hidden text-lg hover:scale-110 transition-transform" onclick="openMenu()">☰</button>
+        </div>
     </div>
 </header>
 
-<!-- 工具头部信息 -->
-<div class="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-900 dark:to-gray-800 py-10">
-    <div class="container mx-auto px-4 max-w-4xl">
-        <div class="flex items-center gap-4">
-            <div class="w-16 h-16 rounded-2xl bg-tech-primary/10 flex items-center justify-center text-tech-primary text-2xl font-bold">豆包</div>
+<!-- 移动端菜单 -->
+<div class="mobile-menu fixed inset-0 z-50 bg-white dark:bg-tech-darkBg p-6 transform translate-x-full transition-transform duration-300">
+    <div class="flex justify-between items-center mb-6">
+        <span class="font-medium text-gray-800 dark:text-white">菜单</span>
+        <button onclick="closeMenu()" class="text-xl hover:scale-110 transition-transform">✕</button>
+    </div>
+    <div class="flex flex-col gap-3 text-sm text-gray-600 dark:text-gray-300">
+        <a href="/" class="py-2 border-b border-gray-100 dark:border-gray-800 hover:text-tech-primary">首页</a>
+        <a href="/ai-platforms.html" class="py-2 border-b border-gray-100 dark:border-gray-800 text-tech-primary font-medium">AI平台</a>
+        <a href="/about.html" class="py-2 hover:text-tech-primary">关于</a>
+    </div>
+</div>
+<div class="menu-mask fixed inset-0 bg-black/50 z-40 hidden" onclick="closeMenu()"></div>
+
+<main class="container mx-auto px-4 py-10 max-w-3xl">
+    <div class="bg-white dark:bg-tech-darkCard rounded-2xl p-6 shadow-md">
+        <div class="flex items-center gap-3 mb-6">
+            <div class="w-12 h-12 rounded-full bg-tech-primary/10 dark:bg-tech-primary/20 flex items-center justify-center text-tech-primary font-bold text-lg">豆包</div>
             <div>
-                <h1 class="text-3xl font-bold">豆包AI</h1>
-                <p class="text-gray-500 dark:text-gray-400 mt-1">字节旗下全能AI大模型，免费好用新手首选</p>
+                <h1 class="text-2xl font-bold">豆包AI</h1>
+                <p class="text-gray-500 dark:text-gray-400">字节旗下全能大模型 · 新手入门首选AI</p>
             </div>
         </div>
-    </div>
-</div>
 
-<!-- Tab 分类标签 -->
-<div class="bg-white dark:bg-tech-darkCard shadow-sm sticky top-[62px] z-40">
-    <div class="container mx-auto px-4 max-w-4xl">
-        <div class="flex overflow-x-auto">
-            <a href="#intro" class="tab-active px-5 py-4 whitespace-nowrap font-medium">工具介绍</a>
-            <a href="#func" class="px-5 py-4 whitespace-nowrap font-medium text-gray-500 hover:text-tech-primary">核心功能</a>
-            <a href="#guide" class="px-5 py-4 whitespace-nowrap font-medium text-gray-500 hover:text-tech-primary">使用攻略</a>
-            <a href="#review" class="px-5 py-4 whitespace-nowrap font-medium text-gray-500 hover:text-tech-primary">用户评价</a>
-            <a href="#link" class="px-5 py-4 whitespace-nowrap font-medium text-gray-500 hover:text-tech-primary">官方入口</a>
-        </div>
-    </div>
-</div>
+        <h2 class="text-lg font-semibold mt-6 mb-2">📌 工具简介</h2>
+        <p class="text-gray-600 dark:text-gray-300">豆包AI是字节跳动推出的国产全能大模型，免费额度充足，支持文案写作、代码生成、学习辅导、办公总结、多模态识图等功能，中文理解自然流畅，零门槛适合所有新手使用。</p>
 
-<!-- 主体内容 -->
-<main class="container mx-auto px-4 py-8 max-w-4xl">
-    <div id="intro" class="mb-10">
-        <h2 class="text-xl font-bold mb-4">📌 工具介绍</h2>
-        <div class="bg-white dark:bg-tech-darkCard rounded-xl p-6 shadow-sm">
-            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-                豆包AI是字节跳动旗下全新一代大语言模型，中文理解能力强、响应速度快、免费额度充足。
-                支持文案创作、代码编写、学习辅导、办公总结、多模态识图等全场景功能，零基础直接上手。
-            </p>
-        </div>
-    </div>
+        <h2 class="text-lg font-semibold mt-6 mb-2">✨ 核心功能</h2>
+        <ul class="list-disc pl-5 text-gray-600 dark:text-gray-300 space-y-1">
+            <li>文案创作、短视频脚本、公众号推文一键生成</li>
+            <li>编程代码编写、改错、逻辑讲解、网站开发辅助</li>
+            <li>学生作业辅导、知识点梳理、备考答疑</li>
+            <li>办公周报、月报、方案策划、文档总结</li>
+            <li>图片识图解读、多模态图文问答</li>
+        </ul>
 
-    <div id="func" class="mb-10">
-        <h2 class="text-xl font-bold mb-4">✨ 核心功能</h2>
-        <div class="bg-white dark:bg-tech-darkCard rounded-xl p-6 shadow-sm">
-            <ul class="list-disc pl-5 text-gray-600 dark:text-gray-300 space-y-2">
-                <li>文案写作、短视频脚本、公众号推文一键生成</li>
-                <li>编程代码生成、查错、解释逻辑、网站开发辅助</li>
-                <li>中小学作业辅导、知识点梳理、备考答疑</li>
-                <li>办公周报、月报、活动方案、工作总结撰写</li>
-                <li>图片识别解读、多模态图文问答交互</li>
-            </ul>
-        </div>
+        <h2 class="text-lg font-semibold mt-6 mb-2">💡 使用小技巧</h2>
+        <ul class="list-disc pl-5 text-gray-600 dark:text-gray-300 space-y-1">
+            <li>给AI设定职业角色，输出内容更专业</li>
+            <li>长需求拆分多条提问，结果更精准</li>
+            <li>支持润色、扩写、精简、换风格一键改写</li>
+        </ul>
+
+        <h2 class="text-lg font-semibold mt-6 mb-2">⭐ 适合人群</h2>
+        <p class="text-gray-600 dark:text-gray-300">新手小白、自媒体博主、学生、上班族、居家创业人群。</p>
+
+        <h2 class="text-lg font-semibold mt-6 mb-2">🔗 官方入口</h2>
+        <a href="https://www.doubao.com" target="_blank" class="text-tech-primary hover:underline">https://www.doubao.com</a>
     </div>
 
-    <div id="guide" class="mb-10">
-        <h2 class="text-xl font-bold mb-4">💡 使用攻略</h2>
-        <div class="bg-white dark:bg-tech-darkCard rounded-xl p-6 shadow-sm">
-            <ul class="list-disc pl-5 text-gray-600 dark:text-gray-300 space-y-2">
-                <li>给AI设定专业角色，输出内容更贴合需求</li>
-                <li>复杂需求拆分多条提问，结果更精准</li>
-                <li>可用润色、扩写、精简指令快速优化文案</li>
-            </ul>
-        </div>
+    <div class="mt-8">
+        <a href="/ai-platforms.html" class="inline-block px-5 py-2 bg-tech-primary text-white rounded-lg hover:opacity-90">← 返回AI平台列表</a>
     </div>
-
-    <div id="review" class="mb-10">
-        <h2 class="text-xl font-bold mb-4">⭐ 用户评价</h2>
-        <div class="bg-white dark:bg-tech-darkCard rounded-xl p-6 shadow-sm">
-            <p class="text-gray-600 dark:text-gray-300">
-                免费额度够用，日常写文案、写代码、辅导孩子学习都很方便，国产AI里最省心的一款。
-            </p>
-        </div>
-    </div>
-
-    <div id="link" class="mb-10">
-        <h2 class="text-xl font-bold mb-4">🔗 官方入口</h2>
-        <div class="bg-white dark:bg-tech-darkCard rounded-xl p-6 shadow-sm">
-            <a href="https://www.doubao.com" target="_blank" class="text-tech-primary hover:underline">https://www.doubao.com</a>
-        </div>
-    </div>
-
-    <a href="/ai-platforms.html" class="inline-block px-5 py-2 bg-tech-primary text-white rounded-lg">← 返回AI平台列表</a>
 </main>
 
-<script>
-// 明暗模式
-const darkBtn = document.getElementById('darkBtn');
-if(localStorage.getItem('dark') === 'true'){
-    document.documentElement.classList.add('dark');
-}
-darkBtn.addEventListener('click',()=>{
-    document.documentElement.classList.toggle('dark');
-    localStorage.setItem('dark', document.documentElement.classList.contains('dark'));
-});
+<footer class="py-6 text-center text-xs text-gray-400 dark:text-gray-500">
+    © 2026 AI工具大全 · 全分类AI工具精准收录
+</footer>
 
-// Tab 切换激活样式
-const tabs = document.querySelectorAll('.flex a');
-tabs.forEach(tab=>{
-    tab.addEventListener('click',()=>{
-        tabs.forEach(t=>{
-            t.classList.remove('tab-active');
-            t.classList.add('text-gray-500');
-        });
-        tab.classList.add('tab-active');
-        tab.classList.remove('text-gray-500');
-    });
-});
+<script>
+    // 明暗模式
+    function toggleDark() {
+        document.documentElement.classList.toggle('dark');
+        localStorage.setItem('dark', document.documentElement.classList.contains('dark'));
+    }
+    if (localStorage.getItem('dark') === 'true') document.documentElement.classList.add('dark');
+
+    // 移动端菜单
+    function openMenu() {
+        document.querySelector('.mobile-menu').classList.remove('translate-x-full');
+        document.querySelector('.menu-mask').classList.remove('hidden');
+    }
+    function closeMenu() {
+        document.querySelector('.mobile-menu').classList.add('translate-x-full');
+        document.querySelector('.menu-mask').classList.add('hidden');
+    }
 </script>
+
 </body>
 </html>
