@@ -3,26 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI工具大全 - 极简高效AI导航站</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>AI工具大全 - 精选主流AI工具导航平台</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class',
+            darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        tech: {
-                            primary: '#0E74FF',
-                            darkBg: '#111827',
-                            darkCard: '#1F2937',
-                            darkText: '#F3F4F6'
-                        }
+                        primary: '#0E74FF',
+                        darkBg: '#111827',
+                        darkCard: '#1F2937'
                     },
                     fontFamily: {
-                        inter: ['Inter', 'sans-serif']
+                        sans: ['system-ui', 'sans-serif']
                     }
                 }
             }
@@ -30,180 +24,201 @@
     </script>
     <style type="text/tailwindcss">
         @layer utilities {
-            .card-category {
-                background: white;
-                border-radius: 16px;
-                box-shadow: 0 2px 12px rgba(14,116,255,0.06);
-                border: 1px solid rgba(148,163,184,0.1);
-                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            .card-hover {
+                @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
             }
-            .card-category:hover {
-                transform: translateY(-3px);
-                box-shadow: 0 6px 20px rgba(14,116,255,0.12);
-                border-color: rgba(14,116,255,0.2);
-            }
-            .card-tool {
-                background: white;
-                border-radius: 16px;
-                box-shadow: 0 2px 12px rgba(14,116,255,0.06);
-                border: 1px solid rgba148,163,184,0.1;
-                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            }
-            .card-tool:hover {
-                transform: translateY(-3px);
-                box-shadow: 0 6px 20px rgba(14,116,255,0.12);
-                border-color: rgba(14,116,255,0.2);
-            }
-            .dark .card-category, .dark .card-tool {
-                background: #1F2937;
-                border-color: rgba(75,85,99,0.3);
-                box-shadow: 0 2px 12px rgba(0,0,0,0.2);
-            }
-            .dark .card-category:hover, .dark .card-tool:hover {
-                border-color: rgba(14,116,255,0.3);
-                box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            .nav-link {
+                @apply px-3 py-2 rounded-md transition-colors hover:text-primary;
             }
         }
     </style>
 </head>
-<body class="bg-gray-50 dark:bg-tech-darkBg text-gray-800 dark:text-tech-darkText transition-colors duration-300">
+<body class="bg-gray-50 dark:bg-darkBg text-gray-700 dark:text-gray-200">
+    <!-- 顶部导航栏 -->
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-darkCard/80 backdrop-blur border-b border-gray-200 dark:border-gray-800">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="index.html" class="text-2xl font-bold text-primary">AI工具大全</a>
 
-<!-- 导航栏 已删掉：教程、副业、成功案例 -->
-<header class="sticky top-0 z-50 bg-white/90 dark:bg-tech-darkBg/90 backdrop-blur-md border-b border-gray-100 dark:border-gray-800">
-    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-        <a href="/" class="text-xl font-semibold text-tech-primary">AI工具大全</a>
-        <nav class="hidden md:flex items-center gap-6 text-sm text-gray-600 dark:text-gray-300">
-            <a href="/" class="text-tech-primary font-medium border-b-2 border-tech-primary pb-1">首页</a>
-            <a href="/ai-platforms.html" class="hover:text-tech-primary transition-colors">AI平台</a>
-            <a href="/contact.html" class="hover:text-tech-primary transition-colors">关于</a>
-        </nav>
-        <div class="flex items-center gap-3">
-            <button onclick="toggleDark()" class="text-lg hover:scale-110 transition-transform">🌓</button>
-            <button class="md:hidden text-lg" onclick="openMenu()">☰</button>
+            <!-- 桌面端导航 -->
+            <nav class="hidden md:flex items-center gap-6">
+                <a href="index.html" class="nav-link text-primary font-medium">首页</a>
+                <a href="category.html" class="nav-link">全部分类</a>
+                <a href="#" class="nav-link">新手入门</a>
+                <a href="#" class="nav-link">关于我们</a>
+            </nav>
+
+            <!-- 功能按钮：深色模式切换 -->
+            <div class="flex items-center gap-4">
+                <button id="darkToggle" class="text-xl p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">
+                    🌓
+                </button>
+                <!-- 移动端菜单按钮 -->
+                <button id="menuBtn" class="md:hidden text-xl">☰</button>
+            </div>
         </div>
-    </div>
-</header>
 
-<!-- 移动端菜单 同样删掉多余入口 -->
-<div class="mobile-menu fixed inset-0 z-50 bg-white dark:bg-tech-darkBg p-6 transform translate-x-full transition-transform duration-300">
-    <div class="flex justify-between items-center mb-6">
-        <span class="font-medium text-gray-800 dark:text-white">菜单</span>
-        <button onclick="closeMenu()" class="text-xl">✕</button>
-    </div>
-    <div class="flex flex-col gap-4 text-sm">
-        <a href="/" class="py-2 border-b border-gray-100 dark:border-gray-800 text-tech-primary font-medium">首页</a>
-        <a href="/ai-platforms.html" class="py-2 border-b border-gray-100 dark:border-gray-800 hover:text-tech-primary">AI平台</a>
-        <a href="/contact.html" class="py-2 hover:text-tech-primary">关于</a>
-    </div>
-</div>
-<div class="menu-mask fixed inset-0 bg-black/50 z-40 hidden" onclick="closeMenu()"></div>
+        <!-- 移动端导航菜单 -->
+        <div id="mobileMenu" class="md:hidden hidden border-t border-gray-200 dark:border-gray-800">
+            <div class="container mx-auto px-4 py-2 flex flex-col gap-3">
+                <a href="index.html" class="py-2 text-primary">首页</a>
+                <a href="category.html" class="py-2">全部分类</a>
+                <a href="#" class="py-2">新手入门</a>
+                <a href="#" class="py-2">关于我们</a>
+            </div>
+        </div>
+    </header>
 
-<main class="container mx-auto px-4 py-12 max-w-4xl">
-
-    <!-- 首页Banner -->
-    <section class="text-center mb-16">
-        <h1 class="text-3xl md:text-4xl font-light text-gray-800 dark:text-white mb-3 tracking-tight">发现高效AI工具，提升创造力</h1>
-        <p class="text-gray-500 dark:text-gray-400 text-sm max-w-xl mx-auto">极简收录、清晰分类、每个工具自带教程案例，零基础直接上手</p>
+    <!-- 英雄区 + 搜索框 -->
+    <section class="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-900 dark:to-gray-800 py-16 md:py-24">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-[clamp(2rem,5vw,3rem)] font-bold mb-4">
+                找AI工具，从此不用到处翻
+            </h1>
+            <p class="text-gray-500 dark:text-gray-400 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
+                精选全网主流靠谱AI工具，分类清晰、带简介优劣势、手把手教程，新手也能0基础快速上手
+            </p>
+            <!-- 搜索框 -->
+            <div class="max-w-xl mx-auto relative">
+                <input type="text" placeholder="搜索AI工具、用途、场景..." 
+                    class="w-full px-5 py-3 rounded-full shadow-md border border-gray-200 dark:border-gray-700 dark:bg-darkCard outline-none focus:ring-2 focus:ring-primary">
+                <button class="absolute right-2 top-2 bg-primary text-white px-5 py-1.5 rounded-full">
+                    搜索
+                </button>
+            </div>
+        </div>
     </section>
 
     <!-- 八大分类入口 -->
-    <section class="mb-16">
-        <h2 class="text-lg font-medium text-gray-700 dark:text-gray-200 mb-8 text-center">全部分类入口</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-            <a href="/ai-platforms.html#chat" class="card-category p-5 text-center">
-                <div class="text-2xl mb-2">💬</div>
-                <p class="text-xs font-medium text-gray-700 dark:text-gray-300">对话大模型</p>
+    <section class="py-14 container mx-auto px-4">
+        <div class="text-center mb-10">
+            <h2 class="text-2xl md:text-3xl font-bold">按场景分类查找</h2>
+            <p class="text-gray-500 dark:text-gray-400 mt-2">点击对应分类，浏览全部精选AI工具</p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+            <!-- 分类卡片 -->
+            <a href="category.html" class="bg-white dark:bg-darkCard rounded-xl p-6 shadow card-hover text-center">
+                <div class="text-3xl mb-3">💬</div>
+                <h3 class="font-semibold text-lg">通用对话大模型</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">写作、问答、思路策划</p>
             </a>
-            <a href="/ai-platforms.html#office" class="card-category p-5 text-center">
-                <div class="text-2xl mb-2">📑</div>
-                <p class="text-xs font-medium text-gray-700 dark:text-gray-300">办公效率</p>
+            <a href="category.html" class="bg-white dark:bg-darkCard rounded-xl p-6 shadow card-hover text-center">
+                <div class="text-3xl mb-3">🎨</div>
+                <h3 class="font-semibold text-lg">AI绘画设计</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">头像、插画、海报创意</p>
             </a>
-            <a href="/ai-platforms.html#copy" class="card-category p-5 text-center">
-                <div class="text-2xl mb-2">✍️</div>
-                <p class="text-xs font-medium text-gray-700 dark:text-gray-300">文案创作</p>
+            <a href="category.html" class="bg-white dark:bg-darkCard rounded-xl p-6 shadow card-hover text-center">
+                <div class="text-3xl mb-3">🎬</div>
+                <h3 class="font-semibold text-lg">AI视频数字人</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">剪辑、数字人、图文转视频</p>
             </a>
-            <a href="/ai-platforms.html#draw" class="card-category p-5 text-center">
-                <div class="text-2xl mb-2">🎨</div>
-                <p class="text-xs font-medium text-gray-700 dark:text-gray-300">绘画设计</p>
+            <a href="category.html" class="bg-white dark:bg-darkCard rounded-xl p-6 shadow card-hover text-center">
+                <div class="text-3xl mb-3">💼</div>
+                <h3 class="font-semibold text-lg">AI办公效率</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">PPT、表格、周报总结</p>
             </a>
-            <a href="/ai-platforms.html#video" class="card-category p-5 text-center">
-                <div class="text-2xl mb-2">🎬</div>
-                <p class="text-xs font-medium text-gray-700 dark:text-gray-300">视频剪辑</p>
+            <a href="category.html" class="bg-white dark:bg-darkCard rounded-xl p-6 shadow card-hover text-center">
+                <div class="text-3xl mb-3">📝</div>
+                <h3 class="font-semibold text-lg">AI文案创作</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">自媒体、脚本、广告语</p>
             </a>
-            <a href="/ai-platforms.html#study" class="card-category p-5 text-center">
-                <div class="text-2xl mb-2">📚</div>
-                <p class="text-xs font-medium text-gray-700 dark:text-gray-300">学习教育</p>
+            <a href="category.html" class="bg-white dark:bg-darkCard rounded-xl p-6 shadow card-hover text-center">
+                <div class="text-3xl mb-3">💻</div>
+                <h3 class="font-semibold text-lg">AI编程建站</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">写代码、查BUG、建站</p>
             </a>
-            <a href="/ai-platforms.html#code" class="card-category p-5 text-center">
-                <div class="text-2xl mb-2">💻</div>
-                <p class="text-xs font-medium text-gray-700 dark:text-gray-300">编程开发</p>
+            <a href="category.html" class="bg-white dark:bg-darkCard rounded-xl p-6 shadow card-hover text-center">
+                <div class="text-3xl mb-3">🔊</div>
+                <h3 class="font-semibold text-lg">AI音频配音</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">配音、语音转换、降噪</p>
             </a>
-            <a href="/ai-platforms.html#audio" class="card-category p-5 text-center">
-                <div class="text-2xl mb-2">🔊</div>
-                <p class="text-xs font-medium text-gray-700 dark:text-gray-300">音频配音</p>
+            <a href="category.html" class="bg-white dark:bg-darkCard rounded-xl p-6 shadow card-hover text-center">
+                <div class="text-3xl mb-3">📚</div>
+                <h3 class="font-semibold text-lg">学习翻译教育</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">翻译、备考、知识点讲解</p>
             </a>
         </div>
     </section>
 
-    <!-- 热门工具精选 -->
-    <section class="mb-16">
-        <h2 class="text-lg font-medium text-gray-700 dark:text-gray-200 mb-8 text-center">热门工具精选</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-            <a href="/tools/doubao.html" class="card-tool p-5 text-center">
-                <div class="w-12 h-12 mx-auto rounded-full bg-tech-primary/10 dark:bg-tech-primary/20 flex items-center justify-center mb-3">
-                    <span class="text-tech-primary font-medium">豆包</span>
-                </div>
-                <p class="text-xs font-medium text-gray-700 dark:text-gray-300">豆包AI</p>
-            </a>
-            <div class="card-tool p-5 text-center opacity-70">
-                <div class="w-12 h-12 mx-auto rounded-full bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center mb-3">
-                    <span class="text-indigo-500 font-medium">Kimi</span>
-                </div>
-                <p class="text-xs font-medium text-gray-700 dark:text-gray-300">Kimi AI</p>
+    <!-- 热门推荐AI工具 -->
+    <section class="py-14 bg-white dark:bg-darkCard">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl md:text-3xl font-bold">热门精选AI工具</h2>
+                <p class="text-gray-500 dark:text-gray-400 mt-2">新手优先尝试，实用又好用</p>
             </div>
-            <div class="card-tool p-5 text-center opacity-70">
-                <div class="w-12 h-12 mx-auto rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center mb-3">
-                    <span class="text-amber-500 font-medium">千问</span>
-                </div>
-                <p class="text-xs font-medium text-gray-700 dark:text-gray-300">通义千问</p>
-            </div>
-            <div class="card-tool p-5 text-center opacity-70">
-                <div class="w-12 h-12 mx-auto rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center mb-3">
-                    <span class="text-red-500 font-medium">文心</span>
-                </div>
-                <p class="text-xs font-medium text-gray-700 dark:text-gray-300">文心一言</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 工具卡片 -->
+                <a href="tool-detail.html" class="block bg-gray-50 dark:bg-darkBg rounded-xl p-5 shadow card-hover">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary text-xl font-bold">
+                            豆
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg">豆包AI</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">国内全能免费大模型</p>
+                        </div>
+                    </div>
+                    <p class="mt-3 text-sm">日常写作、问答、编程、生活咨询全能覆盖，新手首选</p>
+                </a>
+
+                <a href="tool-detail.html" class="block bg-gray-50 dark:bg-darkBg rounded-xl p-5 shadow card-hover">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary text-xl font-bold">
+                            G
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg">ChatGPT</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">全球顶级AI大模型</p>
+                        </div>
+                    </div>
+                    <p class="mt-3 text-sm">逻辑强、创作能力强，适合深度思考、专业内容创作</p>
+                </a>
+
+                <a href="tool-detail.html" class="block bg-gray-50 dark:bg-darkBg rounded-xl p-5 shadow card-hover">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary text-xl font-bold">
+                            M
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg">Midjourney</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">专业AI绘画工具</p>
+                        </div>
+                    </div>
+                    <p class="mt-3 text-sm">画质顶级、风格丰富，插画、海报、艺术创作必备</p>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- 底部标语 -->
-    <section class="text-center text-gray-400 dark:text-gray-500 text-xs tracking-wider mb-10">
-        简约 · 高效 · 实用 · 持续更新
-    </section>
-</main>
+    <!-- 页脚 -->
+    <footer class="py-8 border-t border-gray-200 dark:border-gray-800">
+        <div class="container mx-auto px-4 text-center text-gray-500 dark:text-gray-400">
+            <p>© 2025 AI工具大全 版权所有 | 精选靠谱AI工具导航平台</p>
+        </div>
+    </footer>
 
-<footer class="py-6 text-center text-xs text-gray-400 dark:text-gray-500">
-    © 2026 AI工具大全
-</footer>
+    <!-- JS 功能 -->
+    <script>
+        // 深色模式切换
+        const darkToggle = document.getElementById('darkToggle');
+        const html = document.documentElement;
+        if(localStorage.getItem('dark') === 'true'){
+            html.classList.add('dark');
+        }
+        darkToggle.addEventListener('click',()=>{
+            html.classList.toggle('dark');
+            localStorage.setItem('dark', html.classList.contains('dark'));
+        });
 
-<script>
-    // 明暗模式
-    function toggleDark() {
-        document.documentElement.classList.toggle('dark');
-        localStorage.setItem('dark', document.documentElement.classList.contains('dark'));
-    }
-    if (localStorage.getItem('dark') === 'true') document.documentElement.classList.add('dark');
-
-    // 移动端菜单
-    function openMenu() {
-        document.querySelector('.mobile-menu').classList.remove('translate-x-full');
-        document.querySelector('.menu-mask').classList.remove('hidden');
-    }
-    function closeMenu() {
-        document.querySelector('.mobile-menu').classList.add('translate-x-full');
-        document.querySelector('.menu-mask').classList.add('hidden');
-    }
-</script>
-
+        // 移动端菜单
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuBtn.addEventListener('click',()=>{
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
 </body>
 </html>
