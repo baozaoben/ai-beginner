@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>豆包AI - 字节旗下全能AI大模型</title>
+    <title>豆包AI 详细介绍 - AI工具大全</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -24,70 +25,67 @@
     <style type="text/tailwindcss">
         @layer utilities {
             .tab-active {
-                color: #0E74FF;
                 border-bottom: 2px solid #0E74FF;
+                color: #0E74FF;
             }
+            .content-auto { content-visibility: auto; }
         }
     </style>
 </head>
 <body class="bg-gray-50 dark:bg-tech-darkBg text-gray-800 dark:text-gray-100">
-<!-- 导航栏 -->
-<header class="sticky top-0 z-50 bg-white dark:bg-tech-darkBg border-b border-gray-100 dark:border-gray-800">
+<!-- 主导航 -->
+<header class="sticky top-0 z-50 bg-white/90 dark:bg-tech-darkBg/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
     <div class="container mx-auto px-4 py-3 flex justify-between items-center">
         <a href="/" class="text-xl font-semibold text-tech-primary">AI工具大全</a>
-        <nav class="hidden md:flex items-center gap-6 text-sm text-gray-600 dark:text-gray-300">
+        <nav class="hidden md:flex items-center gap-6 text-sm">
             <a href="/" class="hover:text-tech-primary transition-colors">首页</a>
             <a href="/ai-platforms.html" class="text-tech-primary font-medium border-b-2 border-tech-primary pb-1">AI平台</a>
             <a href="/about.html" class="hover:text-tech-primary transition-colors">关于</a>
         </nav>
-        <button onclick="toggleDark()" class="text-lg">🌓</button>
+        <button id="darkBtn" class="text-lg">🌓</button>
     </div>
 </header>
 
-<!-- 工具头部 -->
-<div class="bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 py-10">
+<!-- 工具头部信息 -->
+<div class="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-900 dark:to-gray-800 py-10">
     <div class="container mx-auto px-4 max-w-4xl">
         <div class="flex items-center gap-4">
-            <div class="w-12 h-12 rounded-xl bg-tech-primary/10 flex items-center justify-center text-tech-primary font-bold">豆包</div>
+            <div class="w-16 h-16 rounded-2xl bg-tech-primary/10 flex items-center justify-center text-tech-primary text-2xl font-bold">豆包</div>
             <div>
-                <h1 class="text-2xl font-bold">豆包AI</h1>
-                <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">字节旗下全能AI大模型，免费好用新手首选</p>
+                <h1 class="text-3xl font-bold">豆包AI</h1>
+                <p class="text-gray-500 dark:text-gray-400 mt-1">字节旗下全能AI大模型，免费好用新手首选</p>
             </div>
         </div>
     </div>
 </div>
 
-<!-- 关键：导航栏下面的5个Tab分类，和你截图完全一样 -->
-<div class="bg-white dark:bg-tech-darkCard border-b border-gray-100 dark:border-gray-800">
+<!-- Tab 分类标签 -->
+<div class="bg-white dark:bg-tech-darkCard shadow-sm sticky top-[62px] z-40">
     <div class="container mx-auto px-4 max-w-4xl">
-        <div class="flex gap-8">
-            <a href="#intro" class="tab-active py-4 text-sm font-medium whitespace-nowrap">工具介绍</a>
-            <a href="#func" class="py-4 text-sm font-medium text-gray-500 hover:text-tech-primary whitespace-nowrap">核心功能</a>
-            <a href="#guide" class="py-4 text-sm font-medium text-gray-500 hover:text-tech-primary whitespace-nowrap">使用攻略</a>
-            <a href="#review" class="py-4 text-sm font-medium text-gray-500 hover:text-tech-primary whitespace-nowrap">用户评价</a>
-            <a href="#link" class="py-4 text-sm font-medium text-gray-500 hover:text-tech-primary whitespace-nowrap">官方入口</a>
+        <div class="flex overflow-x-auto">
+            <a href="#intro" class="tab-active px-5 py-4 whitespace-nowrap font-medium">工具介绍</a>
+            <a href="#func" class="px-5 py-4 whitespace-nowrap font-medium text-gray-500 hover:text-tech-primary">核心功能</a>
+            <a href="#guide" class="px-5 py-4 whitespace-nowrap font-medium text-gray-500 hover:text-tech-primary">使用攻略</a>
+            <a href="#review" class="px-5 py-4 whitespace-nowrap font-medium text-gray-500 hover:text-tech-primary">用户评价</a>
+            <a href="#link" class="px-5 py-4 whitespace-nowrap font-medium text-gray-500 hover:text-tech-primary">官方入口</a>
         </div>
     </div>
 </div>
 
+<!-- 主体内容 -->
 <main class="container mx-auto px-4 py-8 max-w-4xl">
-    <!-- 工具介绍 -->
-    <section id="intro" class="mb-10">
-        <h2 class="text-lg font-semibold mb-3 flex items-center gap-2">
-            <span>📌</span> 工具介绍
-        </h2>
+    <div id="intro" class="mb-10">
+        <h2 class="text-xl font-bold mb-4">📌 工具介绍</h2>
         <div class="bg-white dark:bg-tech-darkCard rounded-xl p-6 shadow-sm">
-            <p class="text-gray-600 dark:text-gray-300">
-                豆包AI是字节跳动旗下全新一代大语言模型，中文理解能力强、响应速度快、免费额度充足。支持文案创作、代码编写、学习辅导、办公总结、多模态识图等全场景功能，零基础直接上手。
+            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                豆包AI是字节跳动旗下全新一代大语言模型，中文理解能力强、响应速度快、免费额度充足。
+                支持文案创作、代码编写、学习辅导、办公总结、多模态识图等全场景功能，零基础直接上手。
             </p>
         </div>
-    </section>
+    </div>
 
-    <!-- 核心功能 -->
-    <section id="func" class="mb-10">
-        <h2 class="text-lg font-semibold mb-3 flex items-center gap-2">
-            <span>✨</span> 核心功能
-        </h2>
+    <div id="func" class="mb-10">
+        <h2 class="text-xl font-bold mb-4">✨ 核心功能</h2>
         <div class="bg-white dark:bg-tech-darkCard rounded-xl p-6 shadow-sm">
             <ul class="list-disc pl-5 text-gray-600 dark:text-gray-300 space-y-2">
                 <li>文案写作、短视频脚本、公众号推文一键生成</li>
@@ -97,13 +95,10 @@
                 <li>图片识别解读、多模态图文问答交互</li>
             </ul>
         </div>
-    </section>
+    </div>
 
-    <!-- 使用攻略 -->
-    <section id="guide" class="mb-10">
-        <h2 class="text-lg font-semibold mb-3 flex items-center gap-2">
-            <span>💡</span> 使用攻略
-        </h2>
+    <div id="guide" class="mb-10">
+        <h2 class="text-xl font-bold mb-4">💡 使用攻略</h2>
         <div class="bg-white dark:bg-tech-darkCard rounded-xl p-6 shadow-sm">
             <ul class="list-disc pl-5 text-gray-600 dark:text-gray-300 space-y-2">
                 <li>给AI设定专业角色，输出内容更贴合需求</li>
@@ -111,52 +106,48 @@
                 <li>可用润色、扩写、精简指令快速优化文案</li>
             </ul>
         </div>
-    </section>
+    </div>
 
-    <!-- 用户评价 -->
-    <section id="review" class="mb-10">
-        <h2 class="text-lg font-semibold mb-3 flex items-center gap-2">
-            <span>👍</span> 用户评价
-        </h2>
+    <div id="review" class="mb-10">
+        <h2 class="text-xl font-bold mb-4">⭐ 用户评价</h2>
         <div class="bg-white dark:bg-tech-darkCard rounded-xl p-6 shadow-sm">
             <p class="text-gray-600 dark:text-gray-300">
                 免费额度够用，日常写文案、写代码、辅导孩子学习都很方便，国产AI里最省心的一款。
             </p>
         </div>
-    </section>
+    </div>
 
-    <!-- 官方入口 -->
-    <section id="link" class="mb-10">
-        <h2 class="text-lg font-semibold mb-3 flex items-center gap-2">
-            <span>🔗</span> 官方入口
-        </h2>
+    <div id="link" class="mb-10">
+        <h2 class="text-xl font-bold mb-4">🔗 官方入口</h2>
         <div class="bg-white dark:bg-tech-darkCard rounded-xl p-6 shadow-sm">
             <a href="https://www.doubao.com" target="_blank" class="text-tech-primary hover:underline">https://www.doubao.com</a>
         </div>
-    </section>
+    </div>
 
     <a href="/ai-platforms.html" class="inline-block px-5 py-2 bg-tech-primary text-white rounded-lg">← 返回AI平台列表</a>
 </main>
 
 <script>
-// 深色模式切换
-function toggleDark() {
-    document.documentElement.classList.toggle('dark');
-    localStorage.setItem('dark', document.documentElement.classList.contains('dark'));
-}
-if (localStorage.getItem('dark') === 'true') {
+// 明暗模式
+const darkBtn = document.getElementById('darkBtn');
+if(localStorage.getItem('dark') === 'true'){
     document.documentElement.classList.add('dark');
 }
+darkBtn.addEventListener('click',()=>{
+    document.documentElement.classList.toggle('dark');
+    localStorage.setItem('dark', document.documentElement.classList.contains('dark'));
+});
 
-// Tab点击高亮
-document.querySelectorAll('.flex a').forEach(tab => {
-    tab.addEventListener('click', function() {
-        document.querySelectorAll('.flex a').forEach(t => {
+// Tab 切换激活样式
+const tabs = document.querySelectorAll('.flex a');
+tabs.forEach(tab=>{
+    tab.addEventListener('click',()=>{
+        tabs.forEach(t=>{
             t.classList.remove('tab-active');
             t.classList.add('text-gray-500');
         });
-        this.classList.add('tab-active');
-        this.classList.remove('text-gray-500');
+        tab.classList.add('tab-active');
+        tab.classList.remove('text-gray-500');
     });
 });
 </script>
